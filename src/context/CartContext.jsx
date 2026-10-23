@@ -40,7 +40,18 @@ export function CartProvider({ children }) {
   const [couponMessage, setCouponMessage] = useState(null);
   
   // Navigation / Funnel Views: 'store' | 'product' | 'checkout' | 'processing' | 'confirmation' | 'upsell'
-  const [currentView, setCurrentView] = useState('store');
+  const [currentView, setCurrentView] = useState(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        const v = params.get('view');
+        if (v && ['store', 'checkout', 'confirmation'].includes(v)) return v;
+      }
+    } catch {
+      // Fallback
+    }
+    return 'store';
+  });
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeOrder, setActiveOrder] = useState(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
