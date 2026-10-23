@@ -2533,158 +2533,637 @@ img {
   }
 }
 
-.alo-express-checkout-box {
-  background-color: var(--alo-white);
-  padding: 18px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--alo-border);
-  margin-bottom: 20px;
-  text-align: center;
+/* ==========================================================================
+   MOBILE COLLAPSIBLE ORDER SUMMARY (Shopify US Standard)
+   ========================================================================== */
+.alo-mobile-order-summary-bar {
+  display: none;
+  background-color: #fafafa;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
 }
 
-.alo-express-title {
-  font-family: var(--font-heading);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  margin-bottom: 10px;
-  color: var(--alo-gray);
+@media (max-width: 860px) {
+  .alo-mobile-order-summary-bar {
+    display: block;
+  }
+  .alo-checkout-summary-col {
+    display: none; /* In mobile, summary is in top collapsible bar! */
+  }
 }
 
-.alo-express-buttons-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.alo-mobile-summary-btn {
+  width: 100%;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.alo-mobile-summary-left {
+  display: flex;
+  align-items: center;
   gap: 8px;
+  color: #111;
+  font-weight: 600;
 }
 
-.alo-express-btn {
-  padding: 10px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 700;
+.alo-mobile-summary-total {
+  font-size: 16px;
+  font-weight: 800;
+  color: #111;
+}
+
+.alo-mobile-summary-drawer {
+  padding: 16px 18px 20px;
+  background-color: #f5f5f7;
+  border-top: 1px solid #e5e5e5;
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* ==========================================================================
+   TIMELINE / STEPPER (E-Commerce US Standard)
+   ========================================================================== */
+.alo-checkout-stepper-wrap {
+  margin-bottom: 24px;
+}
+
+.alo-checkout-stepper {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 12px;
+  max-width: 520px;
+  margin: 0 auto;
 }
 
-.alo-express-btn.applepay { background-color: #000; color: #fff; }
-.alo-express-btn.paypal { background-color: #ffc439; color: #003087; }
-.alo-express-btn.gpay { background-color: #000; color: #fff; }
-
-.alo-divider-with-text {
-  position: relative;
-  text-align: center;
-  margin-top: 14px;
+.alo-step-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 20px;
+  transition: all 0.2s ease;
+  font-family: inherit;
 }
 
-.alo-divider-with-text::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background-color: var(--alo-border);
+.alo-step-item:disabled {
+  cursor: default;
+  opacity: 0.5;
 }
 
-.alo-divider-with-text span {
-  position: relative;
-  background-color: var(--alo-white);
-  padding: 0 10px;
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--alo-gray);
-  letter-spacing: 0.08em;
-}
-
-.alo-form-section {
-  background-color: var(--alo-white);
-  padding: 20px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--alo-border);
-  margin-bottom: 16px;
-}
-
-.alo-form-heading {
-  font-family: var(--font-heading);
+.alo-step-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  margin-bottom: 14px;
+  font-weight: 700;
+  background-color: #e5e5e5;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.alo-step-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #71717a;
+  transition: color 0.2s ease;
+}
+
+.alo-step-item.active .alo-step-indicator {
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.alo-step-item.active .alo-step-label {
+  color: #000;
+  font-weight: 700;
+}
+
+.alo-step-item.completed .alo-step-indicator {
+  background-color: #10b981;
+  color: #fff;
+}
+
+.alo-step-item.completed .alo-step-label {
+  color: #111;
+}
+
+.alo-step-divider {
+  flex: 1;
+  height: 2px;
+  background-color: #e5e5e5;
+  min-width: 24px;
+  max-width: 60px;
+  transition: background-color 0.2s ease;
+}
+
+.alo-step-divider.completed {
+  background-color: #10b981;
+}
+
+@media (max-width: 480px) {
+  .alo-step-label {
+    font-size: 11px;
+  }
+  .alo-step-indicator {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+  .alo-step-divider {
+    min-width: 12px;
+  }
+}
+
+/* ==========================================================================
+   STEP CARDS & US E-COMMERCE FORM ELEMENTS
+   ========================================================================== */
+.alo-step-card {
+  background-color: #ffffff;
+  padding: 28px 24px;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 600px) {
+  .alo-step-card {
+    padding: 20px 16px;
+    border-radius: 8px;
+  }
+}
+
+.alo-step-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.alo-step-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 4px;
+  letter-spacing: -0.01em;
+}
+
+.alo-step-subtitle {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+.alo-guest-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #10b981;
+  background-color: #ecfdf5;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid #a7f3d0;
+  white-space: nowrap;
+}
+
+.alo-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .alo-input-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .alo-input-group label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  color: #27272a;
 }
 
 .alo-text-input {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--alo-border);
-  border-radius: var(--radius-sm);
-  background-color: var(--alo-white);
-  font-size: 12px;
+  height: 48px;
+  padding: 0 14px;
+  border: 1.5px solid #d4d4d8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  font-size: 15px; /* 15-16px prevents iOS Safari auto-zoom */
+  color: #111;
+  transition: all 0.15s ease;
   outline: none;
+  box-sizing: border-box;
 }
 
 .alo-text-input:focus {
-  border-color: var(--alo-black);
+  border-color: #000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
-.alo-form-row.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.alo-text-input.error {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.alo-select-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.alo-phone-input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #d4d4d8;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: all 0.15s ease;
+  overflow: hidden;
+}
+
+.alo-phone-input-wrap:focus-within {
+  border-color: #000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.alo-phone-prefix {
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #52525b;
+  background-color: #f4f4f5;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid #e4e4e7;
+  white-space: nowrap;
+}
+
+.alo-phone-field {
+  border: none !important;
+  box-shadow: none !important;
+  flex: 1;
+}
+
+.alo-input-help {
+  font-size: 11px;
+  color: #71717a;
+  margin-top: 2px;
+}
+
+.alo-input-error {
+  font-size: 12px;
+  font-weight: 500;
+  color: #dc2626;
+  margin-top: 2px;
+}
+
+.alo-checkbox-label {
+  display: flex;
+  align-items: center;
   gap: 10px;
+  font-size: 13px;
+  color: #4b5563;
+  cursor: pointer;
+  user-select: none;
 }
 
-.alo-form-row.three-col {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
-  gap: 10px;
+.alo-checkbox-label input[type="checkbox"] {
+  width: 17px;
+  height: 17px;
+  accent-color: #000;
+  cursor: pointer;
 }
 
-@media (max-width: 600px) {
-  .alo-form-row.two-col,
-  .alo-form-row.three-col {
-    grid-template-columns: 1fr;
-  }
+/* ==========================================================================
+   REVIEW STRIP (Shopify US Style in Steps 2 & 3)
+   ========================================================================== */
+.alo-review-strip {
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  background-color: #fafafa;
+}
+
+.alo-review-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid #f4f4f5;
+}
+
+.alo-review-row:last-child {
+  border-bottom: none;
+}
+
+.alo-review-label {
+  width: 80px;
+  color: #71717a;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.alo-review-value {
+  flex: 1;
+  color: #18181b;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.alo-review-edit {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.alo-review-edit:hover {
+  text-decoration: underline;
+  background-color: #eff6ff;
+}
+
+/* ==========================================================================
+   SHIPPING CARDS (USPS vs 2-Day Air)
+   ========================================================================== */
+.alo-shipping-method-section {
+  padding-top: 14px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.alo-shipping-method-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 10px;
 }
 
 .alo-shipping-options {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
-.alo-shipping-choice {
+.alo-shipping-card {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-  border: 1px solid var(--alo-border);
-  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  border: 1.5px solid #e4e4e7;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.alo-shipping-card input[type="radio"] {
+  accent-color: #000;
+  width: 18px;
+  height: 18px;
+  margin-right: 14px;
   cursor: pointer;
 }
 
-.alo-shipping-choice.selected {
-  border-color: var(--alo-black);
-  background-color: var(--alo-bg-subtle);
+.alo-shipping-card.selected {
+  border-color: #000;
+  background-color: #fafafa;
+  box-shadow: 0 0 0 1px #000;
 }
 
-.alo-shipping-label-wrap {
+.alo-shipping-card-body {
   flex: 1;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.alo-shipping-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #111;
+}
+
+.alo-badge-usps {
+  background-color: #004b87;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.alo-badge-fedex {
+  background-color: #4d148c;
+  color: #ff6600;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.alo-shipping-subtext {
+  display: block;
+  font-size: 12px;
+  color: #71717a;
+  margin-top: 2px;
+}
+
+.alo-shipping-card-price {
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   FAST MOBILE CHECKOUT (Apple Pay & Google Pay)
+   ========================================================================== */
+.alo-fast-pay-highlight-card {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.alo-fast-pay-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+.alo-mobile-pay-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alo-branded-pay-btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.alo-apple-pay-cta {
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.alo-apple-pay-cta:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-1px);
+}
+
+.alo-apple-logo-text {
+  font-size: 20px;
+  letter-spacing: -0.05em;
+}
+
+.alo-btn-sub {
+  font-size: 13px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.alo-google-pay-cta {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #222;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.alo-google-pay-cta:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-1px);
+}
+
+.alo-google-logo-text {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.alo-fast-pay-caption {
+  font-size: 11px;
+  color: #64748b;
+  text-align: center;
+  margin: 0;
+}
+
+.alo-fast-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .alo-fast-buttons-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.alo-stripe-native-btn-wrap {
+  width: 100%;
+  min-height: 50px;
+}
+
+/* ==========================================================================
+   STEP ACTION BUTTONS (Next & Back)
+   ========================================================================== */
+.alo-step-action-row {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alo-btn-step-next {
+  width: 100%;
+  height: 52px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.alo-btn-step-next:hover {
+  background-color: #222;
+}
+
+.alo-btn-step-back {
+  background: none;
+  border: none;
+  color: #71717a;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  transition: color 0.15s ease;
+}
+
+.alo-btn-step-back:hover {
+  color: #000;
 }
 
 .alo-payment-tabs {
@@ -2699,11 +3178,14 @@ img {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 8px;
+  padding: 10px 8px;
   border: 1px solid var(--alo-border);
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
 }
 
 .alo-payment-tab.active {
@@ -2713,10 +3195,10 @@ img {
 }
 
 .alo-card-input-box {
-  background-color: var(--alo-bg-subtle);
-  padding: 14px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--alo-border);
+  background-color: #fff;
+  padding: 18px;
+  border-radius: 8px;
+  border: 1.5px solid var(--alo-border);
 }
 
 .alo-checkout-submit-box {
@@ -2728,8 +3210,12 @@ img {
 
 .alo-checkout-btn {
   width: 100%;
-  height: 50px;
-  font-size: 13px;
+  height: 52px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .alo-checkout-guarantee-note {
@@ -2740,6 +3226,7 @@ img {
   font-size: 10px;
   color: var(--alo-gray);
 }
+
 
 /* Order Summary */
 .alo-summary-card {
