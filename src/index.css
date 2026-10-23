@@ -55,7 +55,6 @@ html {
   background-color: var(--alo-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -64,6 +63,7 @@ body {
   font-size: 14px;
   line-height: 1.5;
   background-color: var(--alo-white);
+  -webkit-text-size-adjust: 100%;
 }
 
 button {
@@ -77,6 +77,13 @@ button {
 input, select, textarea {
   font-family: inherit;
   font-size: 14px;
+}
+
+/* Strictly Prevent iOS Safari Auto-Zoom On Focus (<16px forces 115% digital zoom) */
+@media screen and (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
 }
 
 a {
@@ -713,7 +720,11 @@ img {
     padding: 36px 16px;
   }
   .alo-hero-headline {
-    font-size: 34px;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .alo-hero-subheadline {
     font-size: 13px;
@@ -1087,10 +1098,20 @@ img {
 .alo-card-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center center;
   background-color: var(--alo-bg-subtle);
   transition: opacity 0.2s ease;
+  display: block;
+}
+
+.alo-card-img.alo-card-fit-apparel {
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+
+.alo-card-img.alo-card-fit-accessory {
+  object-fit: contain !important;
+  object-position: center center !important;
+  padding: 12px !important;
 }
 
 .alo-product-card:hover .alo-card-img {
@@ -1335,20 +1356,42 @@ img {
 
 @media (max-width: 768px) {
   .alo-pdp-main-container {
-    padding: 12px 14px 100px 14px;
+    padding: 0 0 100px 0 !important;
   }
 }
 
 .alo-pdp-layout {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   gap: 48px;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (max-width: 900px) {
   .alo-pdp-layout {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+}
+
+.alo-pdp-gallery-col {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.alo-pdp-info-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .alo-pdp-info-col {
+    padding: 20px 16px 40px 16px !important;
   }
 }
 
@@ -1364,14 +1407,15 @@ img {
 }
 
 /* ==========================================================================
-   PDP PRODUCT GALLERY (FLUID NATIVE 60FPS SCROLL-SNAP & 2:3 ASPECT RATIO)
+   PDP PRODUCT GALLERY (FLUID NATIVE 60FPS SCROLL-SNAP & 3:4 LUXURY FRAMING)
    ========================================================================== */
 
 .alo-gallery-wrapper {
   position: relative;
   width: 100%;
+  max-width: 100%;
   aspect-ratio: 2 / 3;
-  max-height: 72vh;
+  max-height: 75vh;
   background-color: var(--alo-bg-subtle);
   border-radius: var(--radius-sm);
   overflow: hidden;
@@ -1382,9 +1426,17 @@ img {
 
 @media (max-width: 768px) {
   .alo-gallery-wrapper {
-    aspect-ratio: 2 / 3;
-    max-height: 60vh;
-    border-radius: var(--radius-sm);
+    aspect-ratio: 2 / 3 !important;
+    max-height: 72vh !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    width: 100% !important;
+  }
+  .alo-gallery-thumbs-row {
+    padding: 0 16px 8px 16px !important;
+  }
+  .alo-pdp-related-section {
+    padding: 30px 16px 20px 16px !important;
   }
 }
 
@@ -1428,12 +1480,21 @@ img {
 .alo-gallery-slide-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center center;
   display: block;
   pointer-events: none;
   -webkit-user-drag: none;
   background-color: var(--alo-bg-subtle);
+}
+
+.alo-gallery-slide-img.alo-fit-apparel {
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+.alo-gallery-slide-img.alo-fit-accessory {
+  object-fit: contain !important;
+  object-position: center center !important;
+  padding: 24px 16px !important;
 }
 
 /* Floating Badges */
@@ -1593,6 +1654,10 @@ img {
   padding-bottom: 6px;
   scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .alo-gallery-thumb-btn {
@@ -2110,6 +2175,7 @@ img {
   right: 0;
   background-color: var(--alo-white);
   padding: 10px 16px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 12px));
   box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
   z-index: 850;
   align-items: center;

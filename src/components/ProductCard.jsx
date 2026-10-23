@@ -38,6 +38,7 @@ export default function ProductCard({ product }) {
     : (showSecondary ? verifiedSecondary : verifiedPrimary);
 
   const isLiked = wishlist.includes(product.id);
+  const isApparel = !['Footwear', 'Accessories'].includes(product.category);
 
   const handleQuickAdd = (e) => {
     e.stopPropagation();
@@ -90,7 +91,7 @@ export default function ProductCard({ product }) {
         <img
           src={displayedImg}
           alt={`${product.name} - ${currentColor}`}
-          className="alo-card-img"
+          className={`alo-card-img ${isApparel ? 'alo-card-fit-apparel' : 'alo-card-fit-accessory'}`}
           loading="lazy"
           onError={() => {
             if (!imgError) setImgError(true);

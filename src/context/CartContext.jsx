@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { trackFunnelEvent } from '../config/endpoints';
+import productsData from '../data/products.json';
 
 const CartContext = createContext();
 
@@ -62,6 +63,45 @@ export function CartProvider({ children }) {
       console.warn('Wishlist storage sync failed:', e);
     }
   }, [wishlist]);
+
+  // Deep-linking / URL Parameter initialization & browser back/forward support
+  useEffect(() => {
+    const handleUrlSync = () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('product') || params.get('id');
+        const view = params.get('view');
+
+        if (productId) {
+          const match = productsData.find(
+            p => String(p.id) === String(productId) || p.handle === productId
+          );
+          if (match) {
+            setSelectedProduct(match);
+            setCurrentView('product');
+            window.scrollTo(0, 0);
+            return;
+          }
+        }
+
+        if (view === 'checkout') {
+          setCurrentView('checkout');
+          window.scrollTo(0, 0);
+          return;
+        }
+
+        // Default or back to store
+        setCurrentView('store');
+        setSelectedProduct(null);
+      } catch (err) {
+        console.warn('URL routing sync failed:', err);
+      }
+    };
+
+    handleUrlSync();
+    window.addEventListener('popstate', handleUrlSync);
+    return () => window.removeEventListener('popstate', handleUrlSync);
+  }, []);
 
   // Currency Formatter
   const formatPrice = (amountInUSD) => {
@@ -194,7 +234,15 @@ export function CartProvider({ children }) {
   const navigateToProduct = (product) => {
     setSelectedProduct(product);
     setCurrentView('product');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('product', product.id);
+      url.searchParams.delete('view');
+      window.history.pushState({ view: 'product', productId: product.id }, '', url);
+    } catch {
+      // Fallback
+    }
+    window.scrollTo(0, 0);
     trackFunnelEvent('ViewContent', {
       content_name: product.name,
       content_ids: [product.id],
@@ -208,7 +256,15 @@ export function CartProvider({ children }) {
     if (cart.length === 0) return;
     setIsCartOpen(false);
     setCurrentView('checkout');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('product');
+      url.searchParams.set('view', 'checkout');
+      window.history.pushState({ view: 'checkout' }, '', url);
+    } catch {
+      // Fallback
+    }
+    window.scrollTo(0, 0);
     trackFunnelEvent('InitiateCheckout', {
       num_items: totalItemCount,
       value: total,
@@ -219,7 +275,16 @@ export function CartProvider({ children }) {
   const navigateToStore = () => {
     setCurrentView('store');
     setSelectedProduct(null);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('product');
+      url.searchParams.delete('id');
+      url.searchParams.delete('view');
+      window.history.pushState({ view: 'store' }, '', url.pathname);
+    } catch {
+      // Fallback
+    }
+    window.scrollTo(0, 0);
   };
 
   return (

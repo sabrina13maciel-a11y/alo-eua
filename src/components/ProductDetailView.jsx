@@ -116,10 +116,11 @@ export default function ProductDetailView({ product, onBackToStore }) {
       ];
 
   const isLiked = wishlist.includes(product.id);
+  const isApparel = !['Footwear', 'Accessories'].includes(product.category);
 
   // Reset scroll and state when product changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
     setActiveImageIndex(0);
     setSelectedColor(product.selectedColor || product.colors?.[0]?.name || 'Black');
     setSelectedSize(product.sizes?.[1]?.name || 'S');
@@ -309,7 +310,7 @@ export default function ProductDetailView({ product, onBackToStore }) {
                       <img
                         src={img.url}
                         alt={img.alt || `${product.name} - view ${idx + 1}`}
-                        className="alo-gallery-slide-img"
+                        className={`alo-gallery-slide-img ${isApparel ? 'alo-fit-apparel' : 'alo-fit-accessory'}`}
                         loading={idx < 3 ? 'eager' : 'lazy'}
                         draggable={false}
                         onError={() => handleImgError(img.url)}
