@@ -24,6 +24,17 @@ export default function ProductCard({ product }) {
   const primaryImg = colorImages[0]?.url || activeColorObj?.thumbnail || product.thumbnailImage;
   const secondaryImg = colorImages[1]?.url || primaryImg;
 
+  const [imgError, setImgError] = useState(false);
+
+  const safeUrl = (u) => (u ? u.replace(/ /g, '%20') : '');
+  const verifiedPrimary = safeUrl(primaryImg) || safeUrl(product.thumbnailImage);
+  const verifiedSecondary = safeUrl(secondaryImg) || verifiedPrimary;
+  const safeFallback = 'https://aloyogabr.vtexassets.com/arquivos/ids/199032/A0685U_05284_b1_a1_750x.jpg';
+
+  const displayedImg = imgError
+    ? (safeUrl(product.thumbnailImage) || safeFallback)
+    : (showSecondary ? verifiedSecondary : verifiedPrimary);
+
   const isLiked = wishlist.includes(product.id);
 
   const handleQuickAdd = (e) => {
@@ -31,13 +42,13 @@ export default function ProductCard({ product }) {
     addToCart({
       ...product,
       selectedColor: currentColor,
-      thumbnailImage: primaryImg,
+      thumbnailImage: verifiedPrimary,
       images: colorImages
     }, {
       color: currentColor,
       size: product.sizes?.[1]?.name || product.sizes?.[0]?.name || 'S',
       quantity: 1,
-      thumbnail: primaryImg
+      thumbnail: verifiedPrimary
     });
     setAddedAnimation(true);
     setTimeout(() => setAddedAnimation(false), 1200);
@@ -47,7 +58,7 @@ export default function ProductCard({ product }) {
     navigateToProduct({
       ...product,
       selectedColor: currentColor,
-      thumbnailImage: primaryImg,
+      thumbnailImage: verifiedPrimary,
       images: colorImages
     });
   };
@@ -60,6 +71,7 @@ export default function ProductCard({ product }) {
   const handleColorSelect = (e, idx) => {
     e.stopPropagation();
     setSelectedColorIndex(idx);
+    setImgError(false);
   };
 
   const showSecondary = isImageHovered && !isSwatchesHovered && secondaryImg && secondaryImg !== primaryImg;
@@ -76,10 +88,13 @@ export default function ProductCard({ product }) {
         onMouseLeave={() => setIsImageHovered(false)}
       >
         <img
-          src={showSecondary ? secondaryImg : primaryImg}
+          src={displayedImg}
           alt={`${product.name} - ${currentColor}`}
           className="alo-card-img"
           loading="lazy"
+          onError={() => {
+            if (!imgError) setImgError(true);
+          }}
         />
 
         {/* 70% OFF & Status Badges */}

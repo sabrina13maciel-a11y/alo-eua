@@ -569,9 +569,27 @@ img {
 .alo-hero-section {
   position: relative;
   min-height: 80vh;
+  background-color: #0b0b0b;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.alo-hero-track {
+  display: flex;
+  width: 100%;
+  min-height: 80vh;
+  will-change: transform;
+}
+
+.alo-hero-slide-pane {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  min-height: 80vh;
+  position: relative;
   display: flex;
   align-items: center;
-  background-color: #0b0b0b;
   overflow: hidden;
 }
 
@@ -686,7 +704,9 @@ img {
 }
 
 @media (max-width: 768px) {
-  .alo-hero-section {
+  .alo-hero-section,
+  .alo-hero-track,
+  .alo-hero-slide-pane {
     min-height: 68vh;
   }
   .alo-hero-container {
@@ -4892,7 +4912,18 @@ img {
 
 @media (max-width: 768px) {
   .alo-hero-nav-arrow {
-    display: none;
+    width: 36px;
+    height: 36px;
+    background: rgba(15, 15, 15, 0.6);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+  }
+  .alo-hero-nav-arrow.left {
+    left: 8px;
+  }
+  .alo-hero-nav-arrow.right {
+    right: 8px;
   }
 }
 

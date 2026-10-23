@@ -544,7 +544,14 @@ function CheckoutFormInner({ onBackToStore, onOrderSuccess }) {
               {cart.map((item) => (
                 <div key={item.cartItemId} className="alo-summary-item">
                   <div className="alo-summary-item-media">
-                    <img src={item.thumbnail} alt={item.name} />
+                    <img
+                      src={(item.thumbnail || item.thumbnailImage || '').replace(/ /g, '%20')}
+                      alt={item.name}
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = 'https://aloyogabr.vtexassets.com/arquivos/ids/199032/A0685U_05284_b1_a1_750x.jpg';
+                      }}
+                    />
                     <span className="alo-summary-item-badge">{item.quantity}</span>
                   </div>
                   <div className="alo-summary-item-desc">
@@ -1287,7 +1294,14 @@ function CheckoutFormInner({ onBackToStore, onOrderSuccess }) {
                 {cart.map((item) => (
                   <div key={item.cartItemId} className="alo-summary-item">
                     <div className="alo-summary-item-media">
-                      <img src={item.thumbnail} alt={item.name} />
+                      <img
+                        src={(item.thumbnail || item.thumbnailImage || '').replace(/ /g, '%20')}
+                        alt={item.name}
+                        onError={(e) => {
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = 'https://aloyogabr.vtexassets.com/arquivos/ids/199032/A0685U_05284_b1_a1_750x.jpg';
+                        }}
+                      />
                       <span className="alo-summary-item-badge">{item.quantity}</span>
                     </div>
                     <div className="alo-summary-item-desc">

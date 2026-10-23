@@ -116,9 +116,13 @@ export default function CartDrawer() {
               {cart.map((item) => (
                 <div key={item.cartItemId} className="alo-cart-item">
                   <img
-                    src={item.thumbnail}
+                    src={(item.thumbnail || item.thumbnailImage || '').replace(/ /g, '%20')}
                     alt={item.name}
                     className="alo-cart-item-img"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = 'https://aloyogabr.vtexassets.com/arquivos/ids/199032/A0685U_05284_b1_a1_750x.jpg';
+                    }}
                   />
                   <div className="alo-cart-item-info">
                     <div className="alo-cart-item-top">

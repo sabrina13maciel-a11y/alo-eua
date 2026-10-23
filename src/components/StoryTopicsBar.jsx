@@ -33,10 +33,14 @@ export default function StoryTopicsBar({ activeCategory, onSelectCategory }) {
               >
                 <div className="alo-topic-avatar-wrap">
                   <img
-                    src={topic.image}
+                    src={(topic.image || '').replace(/ /g, '%20')}
                     alt={topic.label}
                     className="alo-topic-avatar-img"
                     loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = 'https://aloyogabr.vtexassets.com/assets/vtex.file-manager-graphql/images/b79fe3ed-b753-42a7-8df7-19ffc18ef90b___087470f6fd7f501eb6beca78c5dc1de4.jpg';
+                    }}
                   />
                   {topic.badge && (
                     <span className="alo-topic-badge">{topic.badge}</span>

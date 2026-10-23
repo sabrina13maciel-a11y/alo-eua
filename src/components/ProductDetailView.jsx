@@ -63,8 +63,16 @@ export default function ProductDetailView({ product, onBackToStore }) {
   const colors = product.colors || [];
   const activeColorObj = colors.find((c) => c.name === selectedColor) || colors[0];
 
-  // Clean deduplication by filename
-  const images = React.useMemo(() => {
+  const [failedImages, setFailedImages] = useState({});
+
+  const handleImgError = (url) => {
+    if (url) {
+      setFailedImages((prev) => ({ ...prev, [url]: true }));
+    }
+  };
+
+  // Clean deduplication by filename + URL space sanitization
+  const rawImages = React.useMemo(() => {
     const rawList = (activeColorObj?.images && activeColorObj.images.length > 0)
       ? activeColorObj.images
       : (product.images && product.images.length > 0
@@ -75,14 +83,26 @@ export default function ProductDetailView({ product, onBackToStore }) {
     const result = [];
     for (const item of rawList) {
       if (!item || !item.url) continue;
-      const fn = item.url.split('/').pop().split('?')[0];
+      const cleanUrl = item.url.replace(/ /g, '%20');
+      const fn = cleanUrl.split('/').pop().split('?')[0];
       if (!seen.has(fn)) {
         seen.add(fn);
-        result.push(item);
+        result.push({ ...item, url: cleanUrl });
       }
     }
-    return result.length > 0 ? result : [{ url: product.thumbnailImage, alt: product.name }];
+    return result.length > 0
+      ? result
+      : [{ url: (product.thumbnailImage || '').replace(/ /g, '%20'), alt: product.name }];
   }, [activeColorObj, product]);
+
+  const fallbackImg = (product.thumbnailImage || 'https://aloyogabr.vtexassets.com/arquivos/ids/199032/A0685U_05284_b1_a1_750x.jpg').replace(/ /g, '%20');
+
+  const images = React.useMemo(() => {
+    return rawImages.map((img) => ({
+      ...img,
+      url: failedImages[img.url] ? fallbackImg : img.url
+    }));
+  }, [rawImages, failedImages, fallbackImg]);
 
   const sizes = product.sizes && product.sizes.length > 0
     ? product.sizes
@@ -290,8 +310,9 @@ export default function ProductDetailView({ product, onBackToStore }) {
                         src={img.url}
                         alt={img.alt || `${product.name} - view ${idx + 1}`}
                         className="alo-gallery-slide-img"
-                        loading={idx === 0 ? 'eager' : 'lazy'}
+                        loading={idx < 3 ? 'eager' : 'lazy'}
                         draggable={false}
+                        onError={() => handleImgError(img.url)}
                       />
                     </div>
                   ))}
@@ -381,7 +402,11 @@ export default function ProductDetailView({ product, onBackToStore }) {
                       className={`alo-gallery-thumb-btn ${activeImageIndex === idx ? 'active' : ''}`}
                       onClick={() => scrollToSlide(idx)}
                     >
-                      <img src={img.url} alt={`Angle ${idx + 1}`} />
+                      <img
+                        src={img.url}
+                        alt={`Angle ${idx + 1}`}
+                        onError={() => handleImgError(img.url)}
+                      />
                     </button>
                   ))}
                 </div>
@@ -686,9 +711,10 @@ export default function ProductDetailView({ product, onBackToStore }) {
           </div>
           <div className="alo-lightbox-content" onClick={(e) => e.stopPropagation()}>
             <img
-              src={images[activeImageIndex]?.url || product.thumbnailImage}
+              src={images[activeImageIndex]?.url || fallbackImg}
               alt={images[activeImageIndex]?.alt || product.name}
               className="alo-lightbox-img"
+              onError={() => handleImgError(images[activeImageIndex]?.url)}
             />
             {images.length > 1 && (
               <>
