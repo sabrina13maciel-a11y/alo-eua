@@ -31,6 +31,8 @@ export default function ProductCard({ product }) {
   const verifiedSecondary = safeUrl(secondaryImg) || verifiedPrimary;
   const safeFallback = 'https://aloyogabr.vtexassets.com/arquivos/ids/199032/A0685U_05284_b1_a1_750x.jpg';
 
+  const showSecondary = isImageHovered && !isSwatchesHovered && secondaryImg && secondaryImg !== primaryImg;
+
   const displayedImg = imgError
     ? (safeUrl(product.thumbnailImage) || safeFallback)
     : (showSecondary ? verifiedSecondary : verifiedPrimary);
@@ -73,8 +75,6 @@ export default function ProductCard({ product }) {
     setSelectedColorIndex(idx);
     setImgError(false);
   };
-
-  const showSecondary = isImageHovered && !isSwatchesHovered && secondaryImg && secondaryImg !== primaryImg;
 
   return (
     <div

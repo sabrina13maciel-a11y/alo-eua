@@ -47,7 +47,17 @@ app.use(express.json());
 // Serve static frontend assets from Vite build in production
 const distPath = path.join(__dirname, 'dist');
 if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath));
+  app.use(express.static(distPath, {
+    setHeaders: (res, filePath) => {
+      if (filePath.endsWith('index.html')) {
+        res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+      } else {
+        res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+    }
+  }));
 }
 
 // Return publishable key for client
@@ -194,6 +204,9 @@ app.post('/api/confirm-order', async (req, res) => {
 app.use((req, res) => {
   const indexPath = path.join(distPath, 'index.html');
   if (fs.existsSync(indexPath)) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
     return res.sendFile(indexPath);
   }
   res.status(200).send(`
