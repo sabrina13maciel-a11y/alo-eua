@@ -30,11 +30,7 @@ import {
   Check,
   ShoppingBag,
   Smartphone,
-  Edit2,
-  Copy,
-  Clock,
-  Zap,
-  QrCode
+  Edit2
 } from 'lucide-react';
 
 const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
@@ -161,7 +157,7 @@ function CheckoutFormInner({ onBackToStore, onOrderSuccess }) {
     zip: '',
     country: 'United States',
     shippingMethod: 'standard', // 'standard' | 'express'
-    paymentMethod: 'card', // 'card' | 'pix'
+    paymentMethod: 'card', // 'card' | 'apple_pay' | 'google_pay'
     cardName: '',
     billingSameAsShipping: true,
     saveInfo: true,
@@ -174,52 +170,8 @@ function CheckoutFormInner({ onBackToStore, onOrderSuccess }) {
   const [errors, setErrors] = useState({});
   const [stripeError, setStripeError] = useState(null);
 
-  // Pix Interactive State & Timer
-  const [pixCopied, setPixCopied] = useState(false);
-  const [pixKeyCopied, setPixKeyCopied] = useState(false);
-  const [pixTimer, setPixTimer] = useState(899);
-
   const expressShippingExtra = formData.shippingMethod === 'express' ? 12.95 : 0;
   const finalTotal = total + expressShippingExtra;
-
-  useEffect(() => {
-    if (formData.paymentMethod !== 'pix') return;
-    const interval = setInterval(() => {
-      setPixTimer((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [formData.paymentMethod]);
-
-  const formatTimer = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-  };
-
-  const pixReceiverEmail = import.meta.env.VITE_PIX_EMAIL || 'pagamentos@aloyoga-outlet.com';
-  const effectivePixKey = pixReceiverEmail;
-  const pixAmountBRL = (finalTotal * 5.5 * 0.95).toFixed(2);
-  const pixCopyCode = `00020126580014br.gov.bcb.pix0136${effectivePixKey}520400005303986540${pixAmountBRL}5802BR5925ALO YOGA OUTLET STORE6009SAO PAULO62070503***6304${Math.floor(1000 + Math.random() * 9000)}`;
-
-  const handleCopyPix = () => {
-    try {
-      navigator.clipboard.writeText(pixCopyCode);
-      setPixCopied(true);
-      setTimeout(() => setPixCopied(false), 3000);
-    } catch {
-      // Fallback
-    }
-  };
-
-  const handleCopyPixKey = () => {
-    try {
-      navigator.clipboard.writeText(effectivePixKey);
-      setPixKeyCopied(true);
-      setTimeout(() => setPixKeyCopied(false), 3000);
-    } catch {
-      // Fallback
-    }
-  };
 
   // Initialize Native Apple Pay / Google Pay PaymentRequest via Stripe
   useEffect(() => {
@@ -403,35 +355,17 @@ function CheckoutFormInner({ onBackToStore, onOrderSuccess }) {
       return;
     }
 
-    if (formData.paymentMethod === 'pix') {
-      setIsSubmitting(true);
-      trackFunnelEvent('AddPaymentInfo', {
-        payment_type: 'pix',
-        value: Number((finalTotal * 0.95).toFixed(2)),
-        currency: 'USD'
-      });
-      setTimeout(async () => {
-        const result = await submitCheckoutOrder({
-          paymentMethod: 'pix',
-          total: Number((finalTotal * 0.95).toFixed(2)),
-          customer: formData,
-          items: cart,
-          shippingMethod: formData.shippingMethod,
-          pixCode: pixCopyCode,
-          pixKey: effectivePixKey
-        });
-        trackFunnelEvent('Purchase', {
-          value: Number((finalTotal * 0.95).toFixed(2)),
-          currency: 'USD',
-          transaction_id: result.orderId,
-          content_type: 'product',
-          num_items: totalItemCount,
-          payment_type: 'pix'
-        });
-        clearCart();
-        setIsSubmitting(false);
-        if (onOrderSuccess) onOrderSuccess(result);
-      }, 900);
+    if (formData.paymentMethod === 'apple_pay' || formData.paymentMethod === 'google_pay') {
+      if (paymentRequest && canMakePayment) {
+        paymentRequest.show();
+      } else {
+        setStripeError(
+          formData.paymentMethod === 'apple_pay'
+            ? 'Apple Pay is ready once verified in Safari on your Apple device. You can also complete your order securely using Credit / Debit Card below.'
+            : 'Google Pay is ready once verified in your browser. You can also complete your order securely using Credit / Debit Card below.'
+        );
+        setFormData((prev) => ({ ...prev, paymentMethod: 'card' }));
+      }
       return;
     }
 
@@ -1152,34 +1086,42 @@ function CheckoutFormInner({ onBackToStore, onOrderSuccess }) {
                 </div>
 
                 <div className="alo-divider-with-text my-4">
-                  <span>OR PAY WITH CREDIT / DEBIT CARD</span>
+                  <span>OR CHOOSE PAYMENT METHOD BELOW</span>
                 </div>
 
                 <form onSubmit={handleSubmitPayment} noValidate>
                   {/* Payment Methods Tab */}
-                  <div className="alo-payment-tabs two-col">
+                  <div className="alo-payment-tabs three-col">
                     <button
                       type="button"
                       className={`alo-payment-tab ${formData.paymentMethod === 'card' ? 'active' : ''}`}
                       onClick={() => setFormData((p) => ({ ...p, paymentMethod: 'card' }))}
                     >
-                      <CreditCard size={16} />
-                      <span>Credit / Debit Card</span>
+                      <CreditCard size={15} />
+                      <span>Credit / Debit</span>
                     </button>
 
                     <button
                       type="button"
-                      className={`alo-payment-tab alo-pix-tab ${formData.paymentMethod === 'pix' ? 'active' : ''}`}
-                      onClick={() => setFormData((p) => ({ ...p, paymentMethod: 'pix' }))}
+                      className={`alo-payment-tab alo-apple-tab ${formData.paymentMethod === 'apple_pay' ? 'active' : ''}`}
+                      onClick={() => setFormData((p) => ({ ...p, paymentMethod: 'apple_pay' }))}
                     >
-                      <Zap size={16} className="text-emerald-500" />
-                      <span>PIX Instantâneo</span>
-                      <span className="alo-pix-tab-badge">-5% OFF</span>
+                      <span className="font-semibold text-xs">Pay</span>
+                      <span>Apple Pay</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      className={`alo-payment-tab alo-google-tab ${formData.paymentMethod === 'google_pay' ? 'active' : ''}`}
+                      onClick={() => setFormData((p) => ({ ...p, paymentMethod: 'google_pay' }))}
+                    >
+                      <span className="font-bold text-xs">G Pay</span>
+                      <span>Google Pay</span>
                     </button>
                   </div>
 
                   {formData.paymentMethod === 'card' && (
-                    <div className="alo-card-input-box">
+                    <div className="alo-card-input-box animate-fade-in">
                       <div className="alo-accepted-cards-row">
                         <span className="alo-card-sublabel">Powered by Stripe SSL:</span>
                         <div className="alo-card-badges-row">
@@ -1247,161 +1189,77 @@ function CheckoutFormInner({ onBackToStore, onOrderSuccess }) {
                     </div>
                   )}
 
-                  {formData.paymentMethod === 'pix' && (
-                    <div className="alo-pix-payment-box animate-fade-in">
-                      {/* Top Header */}
-                      <div className="alo-pix-box-header">
-                        <div className="alo-pix-header-badge">
-                          <span className="alo-pix-pulse-dot" />
-                          <Zap size={14} className="text-emerald-600" />
-                          <span className="font-bold text-xs uppercase tracking-wider text-emerald-800">
-                            PAGAMENTO EM 1 CLIQUE · APROVAÇÃO IMEDIATA
-                          </span>
-                        </div>
-                        <div className="alo-pix-timer-pill" title="Tempo restante para pagamento">
-                          <Clock size={13} className="text-neutral-500" />
-                          <span className="font-mono text-xs font-semibold text-neutral-700">
-                            Expira em: <strong className="text-emerald-700">{formatTimer(pixTimer)}</strong>
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Pricing Banner with 5% Discount */}
-                      <div className="alo-pix-discount-banner">
-                        <div className="alo-pix-discount-left">
-                          <span className="alo-pix-price-label">Total com 5% de desconto Pix:</span>
-                          <div className="alo-pix-price-numbers">
-                            <span className="alo-pix-final-usd">{formatPrice(finalTotal * 0.95)}</span>
-                            <span className="alo-pix-final-brl">(aprox. R$ {pixAmountBRL.replace('.', ',')})</span>
+                  {formData.paymentMethod === 'apple_pay' && (
+                    <div className="alo-wallet-option-box animate-fade-in">
+                      <div className="alo-wallet-header">
+                        <div className="alo-wallet-title-row">
+                          <span className="alo-apple-logo-badge">Pay</span>
+                          <div>
+                            <h4 className="font-bold text-sm text-neutral-900">Apple Pay Express Checkout</h4>
+                            <p className="text-xs text-neutral-500">Pay securely in 1-click using Touch ID, Face ID, or Apple Wallet</p>
                           </div>
                         </div>
-                        <span className="alo-pix-savings-badge">ECONOMIZE {formatPrice(finalTotal * 0.05)}</span>
+                        <span className="alo-badge-verified">STRIPE VERIFIED</span>
                       </div>
 
-                      {/* Interactive QR Code & Copy Actions */}
-                      <div className="alo-pix-qr-section">
-                        <div className="alo-pix-qr-wrapper">
-                          <svg className="alo-pix-qr-svg" viewBox="0 0 200 200" width="160" height="160">
-                            <rect width="200" height="200" fill="#ffffff" rx="12" />
-                            {/* Outer Alignment Squares */}
-                            <path d="M20 20h50v50h-50z M30 30h30v30h-30z M37 37h16v16h-16z" fill="#111827" />
-                            <path d="M130 20h50v50h-50z M140 30h30v30h-30z M147 37h16v16h-16z" fill="#111827" />
-                            <path d="M20 130h50v50h-50z M30 140h30v30h-30z M37 147h16v16h-16z" fill="#111827" />
-                            {/* Internal Data Blocks */}
-                            <path d="M85 25h10v10h-10z M105 25h10v10h-10z M85 45h20v10h-20z M85 65h10v10h-10z M105 65h10v10h-10z" fill="#111827" />
-                            <path d="M25 85h10v10h-10z M45 85h20v10h-20z M25 105h20v10h-20z M55 105h10v10h-10z" fill="#111827" />
-                            <path d="M135 85h20v10h-20z M165 85h10v10h-10z M135 105h10v10h-10z M155 105h20v10h-20z" fill="#111827" />
-                            <path d="M85 135h10v20h-10z M105 135h20v10h-20z M85 165h20v10h-20z M115 155h10v20h-10z" fill="#111827" />
-                            <path d="M135 135h20v10h-20z M165 135h10v10h-10z M135 155h10v20h-10z M155 165h20v10h-20z" fill="#111827" />
-                            {/* Pix Center Diamond Badge */}
-                            <rect x="80" y="80" width="40" height="40" rx="8" fill="#32bcad" />
-                            <path d="M100 86l10 10l-10 10l-10 -10z" fill="#ffffff" />
-                            <path d="M100 94l10 10l-10 10l-10 -10z" fill="#ffffff" opacity="0.85" />
-                          </svg>
-                          <span className="alo-pix-scan-hint">
-                            <QrCode size={13} />
-                            Escaneie pelo app do banco
-                          </span>
+                      <div className="alo-wallet-body mt-4">
+                        <button
+                          type="button"
+                          onClick={triggerMobilePayment}
+                          className="alo-branded-pay-btn alo-apple-pay-cta w-full"
+                        >
+                          <span className="alo-apple-logo-text">Pay</span>
+                          <span className="alo-btn-sub">Click to Authorize with Apple Pay</span>
+                        </button>
+                        <div className="alo-wallet-notice mt-3">
+                          <ShieldCheck size={14} className="text-neutral-500 shrink-0" />
+                          <span>Your real card number is never shared with merchants or stored on Apple servers.</span>
                         </div>
+                      </div>
 
-                        {/* Right / Column Actions */}
-                        <div className="alo-pix-actions-col">
-                          {/* Chave PIX (E-mail) */}
-                          <div className="alo-pix-email-box">
-                            <div className="alo-pix-email-header">
-                              <span className="text-xs font-semibold text-neutral-600 uppercase">Chave PIX (E-mail)</span>
-                              <span className="alo-badge-pix-email">PAGAMENTO DIRETO</span>
-                            </div>
-                            <div className="alo-pix-copy-row">
-                              <input
-                                type="text"
-                                readOnly
-                                value={effectivePixKey}
-                                className="alo-pix-copy-input"
-                              />
-                              <button
-                                type="button"
-                                onClick={handleCopyPixKey}
-                                className={`alo-btn-pix-copy ${pixKeyCopied ? 'copied' : ''}`}
-                                title="Copiar Chave PIX"
-                              >
-                                {pixKeyCopied ? (
-                                  <>
-                                    <Check size={14} className="text-emerald-600" />
-                                    <span>Copiado!</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <Copy size={14} />
-                                    <span>Copiar Chave</span>
-                                  </>
-                                )}
-                              </button>
-                            </div>
+                      {stripeError && (
+                        <div className="alo-stripe-error-box mt-3">
+                          <AlertCircle size={16} />
+                          <span>{stripeError}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {formData.paymentMethod === 'google_pay' && (
+                    <div className="alo-wallet-option-box animate-fade-in">
+                      <div className="alo-wallet-header">
+                        <div className="alo-wallet-title-row">
+                          <span className="alo-google-logo-badge">G Pay</span>
+                          <div>
+                            <h4 className="font-bold text-sm text-neutral-900">Google Pay Express Checkout</h4>
+                            <p className="text-xs text-neutral-500">Fast, encrypted checkout using your Google account cards</p>
                           </div>
+                        </div>
+                        <span className="alo-badge-verified">STRIPE VERIFIED</span>
+                      </div>
 
-                          {/* Pix Copia e Cola */}
-                          <div className="alo-pix-code-box mt-3">
-                            <label className="text-xs font-semibold text-neutral-600 uppercase mb-1 block">
-                              Pix Copia e Cola
-                            </label>
-                            <div className="alo-pix-copy-row">
-                              <input
-                                type="text"
-                                readOnly
-                                value={pixCopyCode}
-                                className="alo-pix-copy-input font-mono text-xs"
-                              />
-                              <button
-                                type="button"
-                                onClick={handleCopyPix}
-                                className={`alo-btn-pix-copy ${pixCopied ? 'copied' : ''}`}
-                                title="Copiar Código Pix"
-                              >
-                                {pixCopied ? (
-                                  <>
-                                    <Check size={14} className="text-emerald-600" />
-                                    <span>Copiado!</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <Copy size={14} />
-                                    <span>Copiar Código</span>
-                                  </>
-                                )}
-                              </button>
-                            </div>
-                          </div>
-
-                          {/* 1-Click Fast Checkout Direct Button */}
-                          <button
-                            type="button"
-                            onClick={handleSubmitPayment}
-                            disabled={isSubmitting}
-                            className="alo-pix-one-click-btn mt-3"
-                          >
-                            {isSubmitting ? (
-                              <span className="alo-btn-loader" />
-                            ) : (
-                              <>
-                                <Zap size={16} />
-                                <span>PAGAR COM PIX EM 1 CLIQUE</span>
-                              </>
-                            )}
-                          </button>
+                      <div className="alo-wallet-body mt-4">
+                        <button
+                          type="button"
+                          onClick={triggerMobilePayment}
+                          className="alo-branded-pay-btn alo-google-pay-cta w-full"
+                        >
+                          <span className="alo-google-logo-text">G Pay</span>
+                          <span className="alo-btn-sub">Click to Authorize with Google Pay</span>
+                        </button>
+                        <div className="alo-wallet-notice mt-3">
+                          <ShieldCheck size={14} className="text-neutral-500 shrink-0" />
+                          <span>Protected by Google multi-layer security and Stripe Level 1 PCI-DSS encryption.</span>
                         </div>
                       </div>
 
-                      {/* Instructions & Lead Email Note */}
-                      <div className="alo-pix-footer-notice">
-                        <div className="alo-pix-steps-micro">
-                          <span><strong>1.</strong> Copie a chave e-mail ou o código Pix acima</span>
-                          <span><strong>2.</strong> Conclua o pagamento em seu banco com 1 clique</span>
-                          <span>
-                            <strong>3.</strong> Comprovante e código de rastreio serão enviados imediatamente para <strong>{formData.email || 'seu e-mail'}</strong>
-                          </span>
+                      {stripeError && (
+                        <div className="alo-stripe-error-box mt-3">
+                          <AlertCircle size={16} />
+                          <span>{stripeError}</span>
                         </div>
-                      </div>
+                      )}
                     </div>
                   )}
 
@@ -1410,14 +1268,19 @@ function CheckoutFormInner({ onBackToStore, onOrderSuccess }) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className={`alo-btn alo-btn-primary alo-checkout-btn ${formData.paymentMethod === 'pix' ? 'alo-pix-checkout-cta' : ''}`}
+                      className="alo-btn alo-btn-primary alo-checkout-btn"
                     >
                       {isSubmitting ? (
                         <span className="alo-btn-loader" />
-                      ) : formData.paymentMethod === 'pix' ? (
+                      ) : formData.paymentMethod === 'apple_pay' ? (
                         <>
-                          <Zap size={17} className="text-emerald-400" />
-                          <span>FINALIZAR COM PIX • {formatPrice(finalTotal * 0.95)} (1-CLIQUE)</span>
+                          <Lock size={16} />
+                          <span>PAY WITH PAY • {formatPrice(finalTotal)}</span>
+                        </>
+                      ) : formData.paymentMethod === 'google_pay' ? (
+                        <>
+                          <Lock size={16} />
+                          <span>PAY WITH GPAY • {formatPrice(finalTotal)}</span>
                         </>
                       ) : (
                         <>

@@ -274,7 +274,7 @@ export default function CartDrawer() {
             </div>
 
             <div className="alo-payment-methods-strip">
-              <span>Accepted: Visa, Mastercard, AMEX, Discover, Apple Pay, Shop Pay, PayPal, Klarna</span>
+              <span>Accepted: Visa, Mastercard, AMEX, Discover, Apple Pay, Google Pay · 256-Bit Stripe SSL</span>
             </div>
           </div>
         )}

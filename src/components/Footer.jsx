@@ -150,10 +150,8 @@ export default function Footer({ onSelectCategory }) {
             <span className="alo-pay-tag">AMEX</span>
             <span className="alo-pay-tag">DISCOVER</span>
             <span className="alo-pay-tag">APPLE PAY</span>
-            <span className="alo-pay-tag">SHOP PAY</span>
-            <span className="alo-pay-tag">PAYPAL</span>
-            <span className="alo-pay-tag">KLARNA</span>
-            <span className="alo-pay-tag">AFTERPAY</span>
+            <span className="alo-pay-tag">GOOGLE PAY</span>
+            <span className="alo-pay-tag">STRIPE SSL</span>
           </div>
         </div>
       </div>

@@ -3280,295 +3280,102 @@ img {
   border-color: var(--alo-black);
 }
 
-.alo-payment-tabs.two-col {
-  grid-template-columns: repeat(2, 1fr);
+.alo-payment-tabs.three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
 
-.alo-pix-tab {
-  position: relative;
+@media (max-width: 480px) {
+  .alo-payment-tabs.three-col {
+    gap: 6px;
+  }
 }
 
-.alo-pix-tab-badge {
-  background: #10b981;
-  color: #fff;
-  font-size: 10px;
-  font-weight: 800;
-  padding: 2px 6px;
-  border-radius: 9999px;
-  margin-left: 4px;
+.alo-payment-tab.alo-apple-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
-.alo-payment-tab.active .alo-pix-tab-badge {
-  background: #34d399;
-  color: #064e3b;
+.alo-payment-tab.alo-google-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
-/* Pix Interactive Box */
-.alo-pix-payment-box {
+.alo-wallet-option-box {
   background-color: #ffffff;
-  border: 1.5px solid #10b981;
-  border-radius: 12px;
+  border: 1.5px solid var(--alo-border);
+  border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
-.alo-pix-box-header {
+.alo-wallet-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
   padding-bottom: 14px;
   border-bottom: 1px solid #f1f5f9;
 }
 
-.alo-pix-header-badge {
+.alo-wallet-title-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
+  gap: 12px;
+}
+
+.alo-apple-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  color: #ffffff;
   padding: 6px 12px;
-  border-radius: 9999px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
-.alo-pix-pulse-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #10b981;
-  border-radius: 50%;
-  animation: alo-pulse 1.8s infinite;
+.alo-google-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 800;
 }
 
-@keyframes alo-pulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1.1); box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+.alo-badge-verified {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
 }
 
-.alo-pix-timer-pill {
+.alo-wallet-notice {
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  padding: 6px 12px;
-  border-radius: 9999px;
-}
-
-.alo-pix-discount-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
-  border: 1px solid #bbf7d0;
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin: 14px 0;
-}
-
-.alo-pix-discount-left {
-  display: flex;
-  flex-direction: column;
-}
-
-.alo-pix-price-label {
   font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #166534;
-}
-
-.alo-pix-price-numbers {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-top: 2px;
-}
-
-.alo-pix-final-usd {
-  font-size: 20px;
-  font-weight: 800;
-  color: #047857;
-}
-
-.alo-pix-final-brl {
-  font-size: 13px;
-  font-weight: 600;
-  color: #065f46;
-}
-
-.alo-pix-savings-badge {
-  background: #047857;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  padding: 4px 10px;
-  border-radius: 6px;
-  white-space: nowrap;
-}
-
-.alo-pix-qr-section {
-  display: grid;
-  grid-template-columns: 180px 1fr;
-  gap: 20px;
-  align-items: center;
-  margin: 16px 0;
-}
-
-@media (max-width: 640px) {
-  .alo-pix-qr-section {
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
-}
-
-.alo-pix-qr-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-}
-
-.alo-pix-qr-svg {
-  display: block;
-  border-radius: 8px;
-  background: #fff;
-  padding: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-.alo-pix-scan-hint {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-top: 8px;
-  font-size: 11px;
-  font-weight: 600;
   color: #64748b;
-}
-
-.alo-pix-actions-col {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.alo-pix-email-box, .alo-pix-code-box {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 10px 12px;
-}
-
-.alo-pix-email-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.alo-badge-pix-email {
-  background: #dcfce7;
-  color: #166534;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.alo-pix-copy-row {
-  display: flex;
-  gap: 8px;
-}
-
-.alo-pix-copy-input {
-  flex: 1;
-  background: #fff;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  padding: 8px 10px;
-  font-size: 12px;
-  color: #0f172a;
-  outline: none;
-}
-
-.alo-btn-pix-copy {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: #0f172a;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 12px;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-
-.alo-btn-pix-copy:hover {
-  background: #1e293b;
-}
-
-.alo-btn-pix-copy.copied {
-  background: #ecfdf5;
-  color: #065f46;
-  border: 1px solid #a7f3d0;
-}
-
-.alo-pix-one-click-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  height: 48px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.alo-pix-one-click-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
-}
-
-.alo-pix-checkout-cta {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
-  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4) !important;
-}
-
-.alo-pix-footer-notice {
-  background: #f8fafc;
-  border: 1px dashed #cbd5e1;
-  border-radius: 8px;
-  padding: 10px 14px;
-  margin-top: 14px;
-}
-
-.alo-pix-steps-micro {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 11px;
-  color: #475569;
   line-height: 1.4;
+}
+
+.alo-stripe-pr-container {
+  min-height: 48px;
 }
 
 .alo-card-input-box {

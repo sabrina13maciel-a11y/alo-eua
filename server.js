@@ -60,6 +60,21 @@ if (fs.existsSync(distPath)) {
   }));
 }
 
+// Serve Apple Pay domain association for Stripe verification
+app.get('/.well-known/apple-developer-merchantid-domain-association', (req, res) => {
+  const filePath = path.join(__dirname, 'public', '.well-known', 'apple-developer-merchantid-domain-association');
+  if (fs.existsSync(filePath)) {
+    res.setHeader('Content-Type', 'text/plain');
+    return res.send(fs.readFileSync(filePath, 'utf8'));
+  }
+  const distFilePath = path.join(distPath, '.well-known', 'apple-developer-merchantid-domain-association');
+  if (fs.existsSync(distFilePath)) {
+    res.setHeader('Content-Type', 'text/plain');
+    return res.send(fs.readFileSync(distFilePath, 'utf8'));
+  }
+  res.status(404).send('Not Found');
+});
+
 // Return publishable key for client
 app.get('/api/config', (req, res) => {
   res.json({

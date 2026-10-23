@@ -83,7 +83,7 @@ export default function Header({ onSelectCategory, activeCategory }) {
           </div>
 
           <div className="alo-announcement-center">
-            <span className="alo-announcement-text fade-in-text key={announcementIndex}">
+            <span key={announcementIndex} className="alo-announcement-text fade-in-text">
               {ANNOUNCEMENTS[announcementIndex]}
             </span>
           </div>
