@@ -1,0 +1,4451 @@
+/* ==========================================================================
+   ALO YOGA OFFICIAL US OUTLET — LUXURY DESIGN SYSTEM (VANILLA CSS)
+   Optimized for 2-Column Mobile Layout, Touch-Swipe Gallery, & 70% Off Funnel
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Alo Monochromatic & Luxury Accents */
+  --alo-black: #0a0a0a;
+  --alo-charcoal: #1f1f1f;
+  --alo-dark-gray: #3a3a3a;
+  --alo-gray: #6b7280;
+  --alo-light-gray: #9ca3af;
+  --alo-border: #e5e7eb;
+  --alo-border-light: #f3f4f6;
+  --alo-bg-subtle: #f9fafb;
+  --alo-bg-warm: #faf9f6;
+  --alo-white: #ffffff;
+
+  /* Promo & Urgency Accents */
+  --alo-sale-red: #dc2626;
+  --alo-sale-dark: #b91c1c;
+  --alo-sale-bg: #fef2f2;
+  --alo-gold: #b45309;
+  --alo-gold-light: #fef3c7;
+  --alo-success: #16a34a;
+  --alo-success-bg: #f0fdf4;
+
+  /* Typography */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+
+  /* Layout */
+  --container-max-w: 1360px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-full: 9999px;
+
+  /* Animations & Transitions */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s var(--ease-smooth);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-main);
+  color: var(--alo-black);
+  background-color: var(--alo-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: var(--alo-white);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all var(--transition-fast);
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 14px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Utilities */
+.hidden-desktop {
+  display: none !important;
+}
+
+.hidden-mobile {
+  display: flex !important;
+}
+
+@media (max-width: 900px) {
+  .hidden-desktop {
+    display: flex !important;
+  }
+  .hidden-mobile {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   BUTTONS & BADGES
+   ========================================================================== */
+
+.alo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.alo-btn:active {
+  transform: scale(0.98);
+}
+
+.alo-btn-primary {
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  border: 1px solid var(--alo-black);
+}
+
+.alo-btn-primary:hover {
+  background-color: #262626;
+  border-color: #262626;
+}
+
+.alo-btn-outline-light {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--alo-white);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.alo-btn-outline-light:hover {
+  background-color: var(--alo-white);
+  color: var(--alo-black);
+}
+
+.alo-btn-accent {
+  background-color: var(--alo-sale-red);
+  color: var(--alo-white);
+  border: 1px solid var(--alo-sale-red);
+}
+
+.alo-btn-accent:hover {
+  background-color: var(--alo-sale-dark);
+}
+
+.alo-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--alo-black);
+  transition: background-color var(--transition-fast);
+}
+
+.alo-icon-btn:hover {
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+
+.alo-badge-sale {
+  background-color: var(--alo-sale-red);
+  color: var(--alo-white);
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.35);
+}
+
+.alo-badge-dark {
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+}
+
+.alo-badge-gold {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   HEADER & TOP BAR
+   ========================================================================== */
+
+.alo-header-root {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 900;
+  background-color: var(--alo-white);
+  transition: box-shadow var(--transition-normal);
+}
+
+.alo-header-scrolled {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.alo-announcement-bar {
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.alo-announcement-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alo-announcement-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alo-announcement-badge {
+  background-color: var(--alo-sale-red);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.alo-announcement-sub {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #d1d5db;
+}
+
+.alo-announcement-center {
+  flex: 1;
+  text-align: center;
+  font-weight: 700;
+}
+
+.alo-announcement-text {
+  display: inline-block;
+  animation: fadeIn 0.35s ease;
+}
+
+.alo-currency-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.alo-currency-select {
+  appearance: none;
+  background: transparent;
+  color: #fff;
+  border: none;
+  padding-right: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+}
+
+.alo-currency-select option {
+  background-color: #111;
+  color: #fff;
+}
+
+.alo-currency-arrow {
+  position: absolute;
+  right: 2px;
+  pointer-events: none;
+  color: #aaa;
+}
+
+/* Nav Bar */
+.alo-nav-bar {
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--alo-border);
+}
+
+.alo-nav-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alo-desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+.alo-nav-link {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--alo-charcoal);
+  padding: 6px 0;
+  position: relative;
+}
+
+.alo-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--alo-black);
+  transition: width var(--transition-normal);
+}
+
+.alo-nav-link:hover,
+.alo-nav-link-active {
+  color: var(--alo-black);
+}
+
+.alo-nav-link:hover::after,
+.alo-nav-link-active::after {
+  width: 100%;
+}
+
+.alo-logo-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+}
+
+.alo-svg-logo {
+  height: 36px;
+  width: auto;
+  color: var(--alo-black);
+}
+
+.alo-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.alo-icon-relative {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alo-badge-counter {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  font-size: 10px;
+  font-weight: 800;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--alo-white);
+}
+
+.alo-bag-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.alo-bag-bounce {
+  animation: bagBounce 0.5s var(--ease-spring);
+}
+
+.alo-badge-bag {
+  background-color: var(--alo-white);
+  color: var(--alo-black);
+  border-color: var(--alo-black);
+}
+
+.alo-bag-label {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+/* Secondary Nav Bar */
+.alo-secondary-nav {
+  border-top: 1px solid var(--alo-border-light);
+  padding: 8px 0;
+  background-color: var(--alo-white);
+}
+
+.alo-secondary-nav-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.alo-secondary-nav-container::-webkit-scrollbar {
+  display: none;
+}
+
+.alo-subnav-pill {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  color: var(--alo-gray);
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.alo-subnav-pill:hover,
+.alo-subnav-pill-active {
+  color: var(--alo-black);
+  background-color: var(--alo-bg-subtle);
+  border-color: var(--alo-border);
+}
+
+/* Mobile Drawer Overlay */
+.alo-mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+.alo-mobile-drawer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 82%;
+  max-width: 320px;
+  background-color: var(--alo-white);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+  animation: slideInLeft 0.25s var(--ease-smooth);
+}
+
+.alo-mobile-drawer-header {
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--alo-border);
+}
+
+.alo-mobile-drawer-title {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.alo-mobile-drawer-content {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.alo-mobile-drawer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--alo-border-light);
+  color: var(--alo-black);
+}
+
+.alo-mobile-drawer-arrow {
+  color: var(--alo-light-gray);
+}
+
+.alo-mobile-drawer-footer {
+  margin-top: auto;
+  padding: 18px 0;
+  border-top: 1px solid var(--alo-border);
+}
+
+.alo-mobile-footer-headline {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.alo-mobile-footer-sub {
+  font-size: 11px;
+  color: var(--alo-gray);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+
+.alo-hero-section {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  background-color: #0b0b0b;
+  overflow: hidden;
+}
+
+.alo-hero-media-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.alo-hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  filter: brightness(0.85);
+}
+
+.alo-hero-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(10, 10, 10, 0.88) 0%,
+    rgba(10, 10, 10, 0.65) 50%,
+    rgba(10, 10, 10, 0.2) 100%
+  );
+}
+
+.alo-hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 50px 24px;
+  width: 100%;
+}
+
+.alo-hero-content {
+  max-width: 620px;
+  color: var(--alo-white);
+}
+
+.alo-hero-tagline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.alo-hero-sale-highlight {
+  color: #ff6b6b;
+  font-weight: 800;
+}
+
+.alo-hero-headline {
+  font-family: var(--font-heading);
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+
+.alo-headline-emphasis {
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+.alo-hero-subheadline {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #e5e7eb;
+  margin-bottom: 30px;
+}
+
+.alo-hero-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.alo-hero-trust-row {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.alo-trust-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #d1d5db;
+}
+
+.alo-trust-chip svg {
+  color: var(--alo-white);
+}
+
+@media (max-width: 768px) {
+  .alo-hero-section {
+    min-height: 68vh;
+  }
+  .alo-hero-container {
+    padding: 36px 16px;
+  }
+  .alo-hero-headline {
+    font-size: 34px;
+  }
+  .alo-hero-subheadline {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .alo-hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .alo-hero-btn {
+    width: 100%;
+  }
+  .alo-hero-gradient-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.7) 0%,
+      rgba(10, 10, 10, 0.85) 100%
+    );
+  }
+}
+
+/* ==========================================================================
+   VALUE PILLARS
+   ========================================================================== */
+
+.alo-pillars-section {
+  background-color: var(--alo-white);
+  border-bottom: 1px solid var(--alo-border);
+  padding: 28px 0;
+}
+
+.alo-pillars-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.alo-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.alo-pillar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 12px;
+  border-left: 2px solid var(--alo-border);
+}
+
+.alo-pillar-icon-box {
+  margin-bottom: 8px;
+  color: var(--alo-black);
+}
+
+.alo-pillar-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.alo-pillar-desc {
+  font-size: 11px;
+  color: var(--alo-gray);
+  line-height: 1.4;
+}
+
+@media (max-width: 860px) {
+  .alo-pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* ==========================================================================
+   CURATED SPOTLIGHT
+   ========================================================================== */
+
+.alo-spotlight-section {
+  padding: 40px 0;
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-spotlight-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.alo-spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.alo-spotlight-card {
+  position: relative;
+  min-height: 460px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background-color: #000;
+}
+
+.alo-spotlight-img-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.alo-spotlight-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.alo-spotlight-card:hover .alo-spotlight-img {
+  transform: scale(1.04);
+}
+
+.alo-spotlight-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 0.88) 100%
+  );
+}
+
+.alo-spotlight-content {
+  position: relative;
+  z-index: 2;
+  padding: 28px;
+  color: var(--alo-white);
+}
+
+.alo-spotlight-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--alo-sale-red);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+
+.alo-spotlight-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.alo-spotlight-desc {
+  font-size: 12px;
+  color: #e5e7eb;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+
+.alo-spotlight-btn {
+  background-color: var(--alo-white);
+  color: var(--alo-black);
+  border-color: var(--alo-white);
+}
+
+@media (max-width: 768px) {
+  .alo-spotlight-grid {
+    grid-template-columns: 1fr;
+  }
+  .alo-spotlight-card {
+    min-height: 380px;
+  }
+  .alo-spotlight-content {
+    padding: 20px;
+  }
+}
+
+/* ==========================================================================
+   CATEGORY FILTERS & SEARCH
+   ========================================================================== */
+
+.alo-filter-section {
+  padding: 24px 0 16px;
+  background-color: var(--alo-white);
+  border-bottom: 1px solid var(--alo-border);
+}
+
+.alo-filter-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.alo-filter-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.alo-filter-pills-row::-webkit-scrollbar {
+  display: none;
+}
+
+.alo-filter-pill {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  background-color: var(--alo-bg-subtle);
+  color: var(--alo-black);
+  border: 1px solid var(--alo-border);
+  white-space: nowrap;
+}
+
+.alo-filter-pill.active {
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  border-color: var(--alo-black);
+}
+
+.alo-filter-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.alo-filter-count {
+  font-size: 12px;
+  color: var(--alo-gray);
+}
+
+.alo-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.alo-filter-search-box {
+  width: 240px;
+}
+
+.alo-filter-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--alo-bg-subtle);
+  font-size: 12px;
+  outline: none;
+}
+
+.alo-filter-input:focus {
+  border-color: var(--alo-black);
+  background-color: var(--alo-white);
+}
+
+.alo-sort-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.alo-sort-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--alo-gray);
+  pointer-events: none;
+}
+
+.alo-sort-select {
+  appearance: none;
+  padding: 8px 28px 8px 28px;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--alo-bg-subtle);
+  font-size: 11px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .alo-filter-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .alo-filter-search-box {
+    flex: 1;
+    width: auto;
+  }
+}
+
+/* ==========================================================================
+   PRODUCT GRID — 2 COLUMNS ON MOBILE (SIDE BY SIDE)
+   ========================================================================== */
+
+.alo-products-section {
+  padding: 32px 0 70px;
+  background-color: var(--alo-white);
+}
+
+.alo-products-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.alo-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .alo-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+
+/* CRITICAL: 2 COLUMNS SIDE-BY-SIDE ON ALL PHONES & TABLETS */
+@media (max-width: 860px) {
+  .alo-products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  .alo-products-container {
+    padding: 0 10px !important;
+  }
+}
+
+.alo-product-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+}
+
+.alo-card-media-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  background-color: var(--alo-bg-subtle);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.alo-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  background-color: var(--alo-bg-subtle);
+  transition: opacity 0.2s ease;
+}
+
+.alo-product-card:hover .alo-card-img {
+  /* No scale to prevent unwanted digital zoom */
+}
+
+.alo-card-badges {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2;
+}
+
+.alo-card-wishlist-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.alo-card-quick-add-btn {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background-color: rgba(10, 10, 10, 0.94);
+  color: var(--alo-white);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  backdrop-filter: blur(6px);
+  z-index: 3;
+  transition: all var(--transition-fast);
+}
+
+@media (min-width: 861px) {
+  .alo-card-quick-add-btn {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+  .alo-product-card:hover .alo-card-quick-add-btn {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 860px) {
+  .alo-card-quick-add-btn {
+    opacity: 0.95;
+    padding: 6px 6px;
+    font-size: 10px;
+    bottom: 6px;
+    left: 6px;
+    right: 6px;
+  }
+  .alo-quick-add-text {
+    font-size: 9px;
+    letter-spacing: 0.05em;
+  }
+  .hidden-small-mobile {
+    display: none !important;
+  }
+}
+
+.alo-card-quick-add-btn.added {
+  background-color: var(--alo-success);
+}
+
+.alo-card-info {
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.alo-card-swatches {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.alo-swatches-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.alo-swatch-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.alo-swatch-active {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 1.5px var(--alo-white), 0 0 0 2.5px var(--alo-black);
+}
+
+.alo-swatches-extra {
+  font-size: 9px;
+  color: var(--alo-gray);
+  font-weight: 700;
+}
+
+.alo-swatch-name-label {
+  font-size: 10px;
+  color: var(--alo-gray);
+}
+
+.alo-card-title {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--alo-black);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 34px;
+}
+
+@media (max-width: 860px) {
+  .alo-card-title {
+    font-size: 12px;
+    height: 32px;
+  }
+}
+
+.alo-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+}
+
+.alo-stars-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5px;
+}
+
+.alo-rating-val {
+  font-weight: 800;
+}
+
+.alo-review-count {
+  color: var(--alo-gray);
+}
+
+.alo-card-price-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  flex-wrap: wrap;
+}
+
+.alo-card-price {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--alo-sale-red);
+}
+
+.alo-card-original-price {
+  font-size: 11px;
+  color: var(--alo-light-gray);
+  text-decoration: line-through;
+}
+
+.alo-card-discount-pill {
+  font-size: 9px;
+  font-weight: 800;
+  background-color: var(--alo-sale-bg);
+  color: var(--alo-sale-red);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   PRODUCT DETAIL PAGE — TOUCH SWIPEABLE GALLERY
+   ========================================================================== */
+
+.alo-pdp-root {
+  background-color: var(--alo-white);
+  padding-bottom: 80px;
+}
+
+.alo-breadcrumbs-bar {
+  border-bottom: 1px solid var(--alo-border);
+  padding: 12px 0;
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-breadcrumbs-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alo-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.alo-pdp-main-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 30px 16px;
+}
+
+@media (max-width: 768px) {
+  .alo-pdp-main-container {
+    padding: 12px 14px 100px 14px;
+  }
+}
+
+.alo-pdp-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+}
+
+@media (max-width: 900px) {
+  .alo-pdp-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.alo-gallery-sticky {
+  position: sticky;
+  top: 110px;
+}
+
+@media (max-width: 900px) {
+  .alo-gallery-sticky {
+    position: static;
+  }
+}
+
+/* ==========================================================================
+   PDP PRODUCT GALLERY (FLUID NATIVE 60FPS SCROLL-SNAP & 2:3 ASPECT RATIO)
+   ========================================================================== */
+
+.alo-gallery-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  max-height: 72vh;
+  background-color: var(--alo-bg-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 768px) {
+  .alo-gallery-wrapper {
+    aspect-ratio: 2 / 3;
+    max-height: 60vh;
+    border-radius: var(--radius-sm);
+  }
+}
+
+.alo-gallery-slider {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  cursor: grab;
+}
+
+.alo-gallery-slider:active {
+  cursor: grabbing;
+}
+
+.alo-gallery-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.alo-gallery-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--alo-bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alo-gallery-slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  background-color: var(--alo-bg-subtle);
+}
+
+/* Floating Badges */
+.alo-pdp-floating-badges {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Wishlist Button */
+.alo-pdp-wishlist-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.alo-pdp-wishlist-btn:hover {
+  transform: scale(1.06);
+  background-color: #ffffff;
+}
+
+/* Tap to Zoom Button */
+.alo-pdp-zoom-btn {
+  position: absolute;
+  top: 58px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--alo-black);
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.alo-pdp-zoom-btn:hover {
+  transform: scale(1.06);
+  background-color: #ffffff;
+}
+
+/* Desktop Gallery Nav Arrows */
+.alo-gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  color: var(--alo-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  cursor: pointer;
+}
+
+.alo-gallery-arrow:hover {
+  background-color: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.alo-gallery-arrow.left {
+  left: 12px;
+}
+
+.alo-gallery-arrow.right {
+  right: 12px;
+}
+
+@media (max-width: 768px) {
+  .alo-gallery-arrow {
+    display: none;
+  }
+}
+
+/* Mobile Image Counter Pill */
+.alo-gallery-counter-pill {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Pagination Dots */
+.alo-gallery-dots-row {
+  position: absolute;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 4;
+  pointer-events: auto;
+}
+
+.alo-gallery-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.alo-gallery-dot.active {
+  width: 22px;
+  border-radius: var(--radius-full);
+  background-color: var(--alo-black);
+  border-color: var(--alo-black);
+}
+
+/* Thumbnails */
+.alo-gallery-thumbs-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.alo-gallery-thumb-btn {
+  width: 64px;
+  aspect-ratio: 2 / 3;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 2px solid transparent;
+  opacity: 0.5;
+  cursor: pointer;
+  background-color: var(--alo-bg-subtle);
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.alo-gallery-thumb-btn:hover {
+  opacity: 0.85;
+}
+
+.alo-gallery-thumb-btn.active {
+  opacity: 1;
+  border-color: var(--alo-black);
+}
+
+.alo-gallery-thumb-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Fullscreen High-Res Lightbox Modal */
+.alo-lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.94);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.2s ease;
+}
+
+.alo-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2010;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.alo-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.06);
+}
+
+.alo-lightbox-counter {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  z-index: 2010;
+}
+
+.alo-lightbox-content {
+  position: relative;
+  max-width: 92vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alo-lightbox-img {
+  max-width: 100%;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.alo-lightbox-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2010;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.alo-lightbox-arrow:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.alo-lightbox-arrow.left {
+  left: -24px;
+}
+
+.alo-lightbox-arrow.right {
+  right: -24px;
+}
+
+@media (max-width: 768px) {
+  .alo-lightbox-arrow.left {
+    left: 8px;
+  }
+  .alo-lightbox-arrow.right {
+    right: 8px;
+  }
+}
+
+/* PDP Info */
+.alo-pdp-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.alo-pdp-category-tag {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--alo-gray);
+  text-transform: uppercase;
+}
+
+.alo-pdp-flash-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--alo-sale-bg);
+  color: var(--alo-sale-red);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+.alo-pdp-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.alo-pdp-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--alo-border);
+}
+
+.alo-rating-score {
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.alo-rating-link {
+  font-size: 12px;
+  color: var(--alo-gray);
+  text-decoration: underline;
+}
+
+.alo-fit-guarantee-tag {
+  background-color: var(--alo-success-bg);
+  color: var(--alo-success);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.alo-pdp-price-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
+.alo-pdp-current-price {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--alo-sale-red);
+}
+
+.alo-pdp-original-price {
+  font-size: 16px;
+  color: var(--alo-light-gray);
+  text-decoration: line-through;
+}
+
+.alo-pdp-savings-badge {
+  background-color: var(--alo-sale-bg);
+  color: var(--alo-sale-red);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* Stock Urgency */
+.alo-stock-urgency-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fffbeb;
+  border: 1px solid #fef3c7;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: #92400e;
+  margin-bottom: 20px;
+}
+
+.alo-pdp-variant-block {
+  margin-bottom: 20px;
+}
+
+.alo-variant-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.alo-variant-label-title {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.alo-variant-label-value {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.alo-size-guide-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.alo-pdp-color-swatches {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.alo-pdp-swatch-btn {
+  padding: 2px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+}
+
+.alo-pdp-swatch-btn .alo-swatch-circle {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.alo-pdp-swatch-btn.active {
+  border-color: var(--alo-black);
+}
+
+.alo-pdp-sizes-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .alo-pdp-sizes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.alo-size-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--alo-white);
+}
+
+.alo-size-btn.active {
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  border-color: var(--alo-black);
+}
+
+.alo-size-text {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.alo-size-sub {
+  font-size: 9px;
+  opacity: 0.75;
+}
+
+/* Actions */
+.alo-pdp-action-group {
+  margin: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alo-qty-row {
+  display: flex;
+  gap: 10px;
+}
+
+.alo-qty-stepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-qty-btn {
+  width: 40px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.alo-qty-val {
+  width: 30px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 800;
+}
+
+.alo-pdp-atc-btn {
+  flex: 1;
+  height: 48px;
+}
+
+.alo-pdp-buynow-btn {
+  width: 100%;
+  height: 48px;
+}
+
+.alo-pdp-guarantees {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 0;
+  border-top: 1px solid var(--alo-border);
+  border-bottom: 1px solid var(--alo-border);
+}
+
+.alo-guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.alo-pdp-accordions {
+  margin-top: 20px;
+}
+
+.alo-pdp-lead-desc {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4b5563;
+  margin-bottom: 16px;
+}
+
+.alo-accordion-item {
+  border-bottom: 1px solid var(--alo-border);
+}
+
+.alo-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.alo-accordion-content {
+  padding-bottom: 14px;
+  font-size: 12px;
+  color: var(--alo-charcoal);
+  line-height: 1.5;
+}
+
+.alo-bullet-list {
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Related */
+.alo-pdp-related-section {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid var(--alo-border);
+}
+
+.alo-related-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+}
+
+.alo-related-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 860px) {
+  .alo-related-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+}
+
+.alo-related-card {
+  cursor: pointer;
+}
+
+.alo-related-img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+  object-position: center center;
+  border-radius: var(--radius-sm);
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-related-name {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alo-related-price {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--alo-sale-red);
+}
+
+/* Sticky Mobile Bar */
+.alo-sticky-mobile-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--alo-white);
+  padding: 10px 16px;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+  z-index: 850;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 900px) {
+  .alo-sticky-mobile-bar {
+    display: flex;
+  }
+}
+
+.alo-sticky-mobile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.alo-sticky-name {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alo-sticky-price-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.alo-sticky-price {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--alo-sale-red);
+}
+
+.alo-sticky-discount-pill {
+  font-size: 9px;
+  font-weight: 800;
+  background-color: var(--alo-sale-bg);
+  color: var(--alo-sale-red);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.alo-sticky-atc-btn {
+  padding: 10px 20px;
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   CART DRAWER
+   ========================================================================== */
+
+.alo-cart-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease;
+}
+
+.alo-cart-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--alo-white);
+  display: flex;
+  flex-direction: column;
+  animation: slideInRight 0.28s var(--ease-smooth);
+}
+
+.alo-cart-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--alo-border);
+}
+
+.alo-cart-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.alo-cart-shipping-bar-box {
+  background-color: var(--alo-bg-subtle);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--alo-border);
+}
+
+.alo-shipping-status-row {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.alo-progress-track {
+  width: 100%;
+  height: 6px;
+  background-color: #e5e7eb;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.alo-progress-fill {
+  height: 100%;
+  background-color: var(--alo-black);
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+}
+
+.alo-progress-fill.unlocked {
+  background-color: var(--alo-success);
+}
+
+.alo-cart-items-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+
+.alo-cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 50px 16px;
+  gap: 12px;
+}
+
+.alo-empty-bag-icon {
+  color: var(--alo-light-gray);
+}
+
+.alo-cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.alo-cart-item {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--alo-border-light);
+}
+
+.alo-cart-item-img {
+  width: 70px;
+  height: 88px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-cart-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.alo-cart-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.alo-cart-item-name {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.alo-cart-remove-btn {
+  color: var(--alo-light-gray);
+}
+
+.alo-cart-remove-btn:hover {
+  color: var(--alo-sale-red);
+}
+
+.alo-cart-item-meta {
+  font-size: 11px;
+  color: var(--alo-gray);
+  margin: 3px 0 8px;
+}
+
+.alo-cart-item-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.alo-cart-item-stepper {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+}
+
+.alo-cart-stepper-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.alo-cart-stepper-val {
+  width: 20px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.alo-cart-item-price {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--alo-sale-red);
+}
+
+/* In-Cart Upsells */
+.alo-cart-upsells-wrapper {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--alo-border);
+}
+
+.alo-cart-upsell-heading {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+
+.alo-cart-upsell-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alo-cart-upsell-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-cart-upsell-img {
+  width: 44px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.alo-cart-upsell-info {
+  flex: 1;
+}
+
+.alo-cart-upsell-badge {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--alo-sale-red);
+  display: block;
+}
+
+.alo-cart-upsell-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.alo-cart-upsell-price {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--alo-sale-red);
+}
+
+.alo-cart-upsell-old {
+  font-size: 10px;
+  color: var(--alo-light-gray);
+  text-decoration: line-through;
+  margin-left: 4px;
+}
+
+.alo-cart-upsell-add-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.alo-cart-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--alo-border);
+  background-color: var(--alo-white);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alo-coupon-input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.alo-coupon-icon {
+  margin-left: 8px;
+  color: var(--alo-gray);
+}
+
+.alo-coupon-input {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  outline: none;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.alo-coupon-btn {
+  background-color: var(--alo-bg-subtle);
+  border-left: 1px solid var(--alo-border);
+  padding: 8px 12px;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.alo-cart-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 0;
+  border-top: 1px dashed var(--alo-border);
+  border-bottom: 1px dashed var(--alo-border);
+}
+
+.alo-breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.alo-breakdown-row.total {
+  font-size: 15px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.alo-cart-checkout-btn {
+  width: 100%;
+  height: 48px;
+}
+
+.alo-cart-security-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--alo-gray);
+}
+
+.alo-payment-methods-strip {
+  font-size: 10px;
+  color: var(--alo-light-gray);
+  text-align: center;
+}
+
+/* ==========================================================================
+   CHECKOUT VIEW
+   ========================================================================== */
+
+.alo-checkout-root {
+  min-height: 100vh;
+  background-color: #fafafa;
+}
+
+.alo-checkout-header {
+  background-color: var(--alo-white);
+  border-bottom: 1px solid var(--alo-border);
+  padding: 14px 0;
+}
+
+.alo-checkout-header-container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alo-checkout-container {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 30px 16px 60px;
+}
+
+.alo-checkout-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 36px;
+}
+
+@media (max-width: 860px) {
+  .alo-checkout-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.alo-express-checkout-box {
+  background-color: var(--alo-white);
+  padding: 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--alo-border);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.alo-express-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+  color: var(--alo-gray);
+}
+
+.alo-express-buttons-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.alo-express-btn {
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alo-express-btn.applepay { background-color: #000; color: #fff; }
+.alo-express-btn.paypal { background-color: #ffc439; color: #003087; }
+.alo-express-btn.gpay { background-color: #000; color: #fff; }
+
+.alo-divider-with-text {
+  position: relative;
+  text-align: center;
+  margin-top: 14px;
+}
+
+.alo-divider-with-text::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--alo-border);
+}
+
+.alo-divider-with-text span {
+  position: relative;
+  background-color: var(--alo-white);
+  padding: 0 10px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--alo-gray);
+  letter-spacing: 0.08em;
+}
+
+.alo-form-section {
+  background-color: var(--alo-white);
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--alo-border);
+  margin-bottom: 16px;
+}
+
+.alo-form-heading {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+
+.alo-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alo-input-group label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.alo-text-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--alo-white);
+  font-size: 12px;
+  outline: none;
+}
+
+.alo-text-input:focus {
+  border-color: var(--alo-black);
+}
+
+.alo-form-row.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.alo-form-row.three-col {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
+  .alo-form-row.two-col,
+  .alo-form-row.three-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+.alo-shipping-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alo-shipping-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.alo-shipping-choice.selected {
+  border-color: var(--alo-black);
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-shipping-label-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alo-payment-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.alo-payment-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.alo-payment-tab.active {
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  border-color: var(--alo-black);
+}
+
+.alo-card-input-box {
+  background-color: var(--alo-bg-subtle);
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--alo-border);
+}
+
+.alo-checkout-submit-box {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alo-checkout-btn {
+  width: 100%;
+  height: 50px;
+  font-size: 13px;
+}
+
+.alo-checkout-guarantee-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 10px;
+  color: var(--alo-gray);
+}
+
+/* Order Summary */
+.alo-summary-card {
+  background-color: var(--alo-white);
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--alo-border);
+  position: sticky;
+  top: 90px;
+}
+
+.alo-summary-heading {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--alo-border);
+  margin-bottom: 14px;
+}
+
+.alo-summary-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.alo-summary-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.alo-summary-item-media {
+  position: relative;
+  width: 48px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.alo-summary-item-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.alo-summary-item-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alo-summary-item-desc {
+  flex: 1;
+}
+
+.alo-summary-item-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.alo-summary-item-variant {
+  font-size: 10px;
+  color: var(--alo-gray);
+}
+
+.alo-summary-item-price {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.alo-summary-promo-form {
+  display: flex;
+  gap: 6px;
+  margin: 14px 0;
+}
+
+.alo-summary-promo-input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  outline: none;
+}
+
+.alo-summary-promo-btn {
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.alo-summary-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--alo-border);
+}
+
+.alo-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.alo-summary-row.total {
+  font-size: 16px;
+  font-weight: 800;
+  padding-top: 8px;
+  border-top: 1px solid var(--alo-border);
+}
+
+/* ==========================================================================
+   PROCESSING & UPSELL
+   ========================================================================== */
+
+.alo-processing-root {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.alo-processing-card {
+  width: 100%;
+  max-width: 440px;
+  background-color: var(--alo-white);
+  padding: 40px 28px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--alo-border);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.alo-processing-loader-box {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alo-processing-spinner {
+  position: absolute;
+  inset: 0;
+  border: 3px solid #e5e7eb;
+  border-top-color: var(--alo-black);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.alo-processing-title {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.alo-processing-sub {
+  font-size: 11px;
+  color: var(--alo-gray);
+  margin-bottom: 24px;
+}
+
+.alo-processing-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.alo-step-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.alo-step-bullet {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 800;
+  border: 1px solid var(--alo-border);
+}
+
+.alo-step-item.completed .alo-step-bullet {
+  background-color: var(--alo-success);
+  color: #fff;
+  border-color: var(--alo-success);
+}
+
+.alo-step-item.active .alo-step-bullet {
+  background-color: var(--alo-black);
+  color: #fff;
+  border-color: var(--alo-black);
+}
+
+/* Upsell View */
+.alo-upsell-root {
+  min-height: 100vh;
+  background-color: #fafafa;
+  padding: 30px 16px 60px;
+}
+
+.alo-upsell-container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.alo-upsell-urgent-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: #fffbeb;
+  border: 1px solid #fef3c7;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 800;
+  color: #92400e;
+  margin-bottom: 20px;
+}
+
+.alo-upsell-card {
+  background-color: var(--alo-white);
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.alo-upsell-header {
+  padding: 24px 20px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--alo-border);
+}
+
+.alo-upsell-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #fef2f2;
+  color: var(--alo-sale-red);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.alo-upsell-title {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.alo-upsell-body {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 28px;
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .alo-upsell-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.alo-upsell-image-box {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.alo-upsell-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-upsell-img-discount {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--alo-sale-red);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.alo-upsell-prod-name {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.alo-upsell-pricing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.alo-upsell-special-price {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--alo-sale-red);
+}
+
+.alo-upsell-old-price {
+  font-size: 14px;
+  color: var(--alo-light-gray);
+  text-decoration: line-through;
+}
+
+.alo-upsell-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.alo-upsell-features li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.alo-upsell-accept-btn {
+  width: 100%;
+  height: 48px;
+  background-color: var(--alo-sale-red);
+  border-color: var(--alo-sale-red);
+}
+
+.alo-upsell-decline-link {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--alo-gray);
+  text-decoration: underline;
+  display: block;
+}
+
+/* ==========================================================================
+   ORDER CONFIRMATION
+   ========================================================================== */
+
+.alo-confirmation-root {
+  min-height: 100vh;
+  background-color: #fafafa;
+  padding: 30px 16px 60px;
+}
+
+.alo-confirmation-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.alo-confirmation-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.alo-conf-check-circle {
+  width: 64px;
+  height: 64px;
+  background-color: var(--alo-success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+
+.alo-conf-title {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.alo-conf-timeline-card {
+  background-color: var(--alo-white);
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--alo-border);
+  margin-bottom: 20px;
+}
+
+.alo-timeline-heading {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.alo-timeline-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 700px) {
+  .alo-timeline-steps {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.alo-step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--alo-border);
+}
+
+.alo-timeline-step.completed .alo-step-dot {
+  background-color: var(--alo-success);
+  border-color: var(--alo-success);
+}
+
+.alo-timeline-step.active .alo-step-dot {
+  background-color: var(--alo-black);
+  border-color: var(--alo-black);
+}
+
+.alo-conf-details-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .alo-conf-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.alo-conf-items-card,
+.alo-conf-shipping-card {
+  background-color: var(--alo-white);
+  padding: 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--alo-border);
+}
+
+.alo-conf-card-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--alo-border);
+  margin-bottom: 14px;
+}
+
+.alo-conf-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.alo-conf-item {
+  display: flex;
+  gap: 10px;
+}
+
+.alo-conf-item-img {
+  width: 44px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.alo-conf-continue-btn {
+  width: 100%;
+}
+
+/* ==========================================================================
+   REVIEWS SECTION
+   ========================================================================== */
+
+.alo-reviews-section {
+  padding: 60px 0;
+  background-color: var(--alo-bg-subtle);
+  border-top: 1px solid var(--alo-border);
+}
+
+.alo-reviews-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.alo-reviews-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+.alo-reviews-sub {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--alo-gray);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.alo-reviews-title {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.alo-reviews-overview-card {
+  background-color: var(--alo-white);
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1.5fr;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 860px) {
+  .alo-reviews-overview-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+.alo-overview-col-score {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alo-score-number {
+  font-family: var(--font-heading);
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.alo-overview-col-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.alo-breakdown-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+}
+
+.alo-bar-track {
+  flex: 1;
+  height: 5px;
+  background-color: #eee;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.alo-bar-fill {
+  height: 100%;
+  background-color: var(--alo-black);
+}
+
+.alo-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .alo-reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .alo-reviews-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.alo-review-card {
+  background-color: var(--alo-white);
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.alo-review-card-top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.alo-review-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.alo-review-name {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.alo-verified-pill {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--alo-success);
+}
+
+.alo-review-location {
+  font-size: 10px;
+  color: var(--alo-gray);
+  display: block;
+}
+
+.alo-review-card-title {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.alo-review-card-text {
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   COMMUNITY & FAQ
+   ========================================================================== */
+
+.alo-ugc-section {
+  padding: 50px 0;
+  background-color: var(--alo-white);
+}
+
+.alo-ugc-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.alo-ugc-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.alo-ugc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--alo-gray);
+  margin-bottom: 4px;
+}
+
+.alo-ugc-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.alo-ugc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 860px) {
+  .alo-ugc-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+.alo-ugc-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.alo-ugc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.alo-ugc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.8) 100%);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: var(--alo-white);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.alo-ugc-card:hover .alo-ugc-overlay {
+  opacity: 1;
+}
+
+/* FAQ */
+.alo-faq-section {
+  padding: 50px 0;
+  background-color: var(--alo-white);
+  border-top: 1px solid var(--alo-border);
+}
+
+.alo-faq-container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.alo-faq-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.alo-faq-title {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.alo-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.alo-faq-card {
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--alo-white);
+}
+
+.alo-faq-question-btn {
+  width: 100%;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.alo-faq-q-text {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.alo-faq-answer {
+  padding: 0 16px 14px;
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+.alo-footer-root {
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+  padding: 50px 0 24px;
+}
+
+.alo-footer-container {
+  max-width: var(--container-max-w);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.alo-footer-newsletter-box {
+  background-color: #141414;
+  border: 1px solid #222;
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.alo-newsletter-badge {
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--alo-sale-red);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.alo-newsletter-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.alo-newsletter-input-wrap {
+  display: flex;
+  align-items: center;
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: var(--radius-sm);
+  padding: 3px 6px 3px 12px;
+}
+
+.alo-newsletter-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #fff;
+  padding: 8px;
+  outline: none;
+  font-size: 12px;
+}
+
+.alo-newsletter-btn {
+  background-color: var(--alo-white);
+  color: var(--alo-black);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.alo-footer-columns {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #222;
+}
+
+@media (max-width: 860px) {
+  .alo-footer-columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 500px) {
+  .alo-footer-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.alo-footer-col-title {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  margin-bottom: 14px;
+  color: #fff;
+}
+
+.alo-footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alo-footer-links button,
+.alo-footer-links a {
+  font-size: 12px;
+  color: #999;
+  text-align: left;
+}
+
+.alo-footer-links button:hover,
+.alo-footer-links a:hover {
+  color: #fff;
+}
+
+.alo-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  font-size: 11px;
+  color: #666;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.alo-footer-payment-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.alo-pay-tag {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 800;
+  color: #bbb;
+}
+
+/* ==========================================================================
+   MODALS: SEARCH & SIZE GUIDE
+   ========================================================================== */
+
+.alo-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+.alo-search-modal {
+  width: 100%;
+  max-width: 620px;
+  background-color: var(--alo-white);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.alo-search-input-row {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--alo-border);
+  gap: 10px;
+}
+
+.alo-search-main-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  font-family: var(--font-heading);
+}
+
+.alo-search-suggestions {
+  padding: 20px;
+}
+
+.alo-search-suggest-title {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--alo-gray);
+  margin-bottom: 10px;
+}
+
+.alo-search-tags-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.alo-search-tag {
+  padding: 5px 12px;
+  background-color: var(--alo-bg-subtle);
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.alo-search-results {
+  padding: 14px 20px;
+  overflow-y: auto;
+}
+
+.alo-search-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.alo-search-item-img {
+  width: 42px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.alo-size-modal {
+  width: 100%;
+  max-width: 600px;
+  background-color: var(--alo-white);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.alo-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.alo-modal-title {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.alo-unit-toggle {
+  display: flex;
+  background-color: var(--alo-bg-subtle);
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  width: fit-content;
+  margin-bottom: 14px;
+}
+
+.alo-unit-btn {
+  padding: 5px 12px;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.alo-unit-btn.active {
+  background-color: var(--alo-black);
+  color: var(--alo-white);
+}
+
+.alo-table-responsive {
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.alo-size-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  text-align: center;
+}
+
+.alo-size-table th,
+.alo-size-table td {
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--alo-border-light);
+}
+
+.alo-size-table th {
+  background-color: var(--alo-bg-subtle);
+  font-family: var(--font-heading);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bagBounce {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+  60% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* ==========================================================================
+   US E-COMMERCE CREDIBILITY & CHECKOUT POLISH
+   ========================================================================== */
+
+.alo-checkout-trust-strip {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid var(--alo-border);
+  padding: 9px 16px;
+  font-size: 11px;
+}
+
+.alo-checkout-trust-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.alo-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--alo-black);
+  font-size: 11px;
+}
+
+.alo-express-buttons-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .alo-express-buttons-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+.alo-express-btn.shoppay {
+  background-color: #5a31f4 !important;
+  color: #ffffff !important;
+  border: none;
+}
+
+.alo-accepted-cards-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.alo-card-sublabel {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--alo-gray);
+  text-transform: uppercase;
+}
+
+.alo-card-badges-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.alo-card-pill {
+  font-size: 9px;
+  font-weight: 800;
+  background-color: #ffffff;
+  border: 1px solid var(--alo-border);
+  padding: 2px 6px;
+  border-radius: 2px;
+  color: #111;
+  letter-spacing: 0.04em;
+}
+
+.alo-card-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.alo-card-lock-icon {
+  position: absolute;
+  right: 12px;
+  color: #888888;
+  pointer-events: none;
+}
+
+.alo-usps-tag {
+  background-color: #004b87;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.alo-fedex-tag {
+  background-color: #4d148c;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.alo-bnpl-checkout-prompt {
+  background-color: var(--alo-bg-subtle);
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+}
+
+.alo-bnpl-split-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+@media (max-width: 520px) {
+  .alo-bnpl-split-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.alo-bnpl-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 11px;
+  background: #ffffff;
+  padding: 8px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--alo-border-light);
+}
+
+.alo-bnpl-step .step-num {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--alo-black);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.alo-checkout-guarantees-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--alo-border-light);
+}
+
+.alo-checkout-guarantees-grid .alo-checkout-guarantee-note {
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 11px;
+  color: var(--alo-gray);
+  line-height: 1.4;
+}
+
+.alo-summary-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--alo-border);
+  margin-bottom: 14px;
+}
+
+.alo-summary-header-row .alo-summary-heading {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.alo-summary-outlet-tag {
+  font-size: 9px;
+  font-weight: 800;
+  background-color: var(--alo-red);
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+
+.alo-summary-item-saved {
+  display: block;
+  font-size: 10px;
+  color: var(--alo-red);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.alo-summary-currency-note {
+  display: block;
+  font-size: 9px;
+  color: var(--alo-gray);
+  font-weight: normal;
+}
+
+.alo-summary-installment-note {
+  margin-top: 12px;
+  padding: 8px 10px;
+  background-color: #fbfbfb;
+  border: 1px dashed var(--alo-border);
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  text-align: center;
+  color: var(--alo-gray);
+}
+
+.alo-summary-trust-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--alo-border);
+}
+
+.alo-summary-seal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #444444;
+  text-align: center;
+}
+
+.alo-select-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.alo-footer-trust-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.alo-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--alo-gray);
+  cursor: pointer;
+}
+
+.alo-section-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.alo-section-header-row .alo-form-heading {
+  margin-bottom: 0;
+}
+
+.alo-login-prompt {
+  font-size: 11px;
+  color: var(--alo-gray);
+}
+
+.alo-login-prompt a {
+  color: var(--alo-black);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   OFFICIAL STORY TOPICS CAROUSEL (DRAG / SWIPE) & HERO SLIDER
+   ========================================================================== */
+
+.alo-topics-section {
+  padding: 20px 0 16px;
+  background-color: var(--alo-white);
+  border-bottom: 1px solid var(--alo-border-light);
+}
+
+.alo-topics-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.alo-topics-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.alo-topics-sub {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--alo-black);
+}
+
+.alo-topics-hint {
+  font-size: 11px;
+  color: var(--alo-gray);
+  font-weight: 500;
+}
+
+.alo-topics-scroll-track {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 6px;
+}
+
+.alo-topics-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+.alo-topic-bubble-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 74px;
+  scroll-snap-align: start;
+  transition: transform 0.2s ease;
+}
+
+.alo-topic-bubble-btn:hover {
+  transform: translateY(-2px);
+}
+
+.alo-topic-avatar-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  padding: 2px;
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.alo-topic-bubble-btn.active .alo-topic-avatar-wrap {
+  border-color: var(--alo-black);
+  transform: scale(1.05);
+}
+
+.alo-topic-bubble-btn:hover .alo-topic-avatar-wrap {
+  border-color: #888888;
+}
+
+.alo-topic-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  background-color: var(--alo-bg-subtle);
+}
+
+.alo-topic-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background-color: var(--alo-red);
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  border: 1px solid #ffffff;
+}
+
+.alo-topic-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--alo-black);
+  text-align: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alo-topic-bubble-btn.active .alo-topic-label {
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.alo-hero-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111111;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.alo-hero-nav-arrow:hover {
+  background: #ffffff;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.alo-hero-nav-arrow.left {
+  left: 20px;
+}
+
+.alo-hero-nav-arrow.right {
+  right: 20px;
+}
+
+.alo-hero-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.alo-hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.alo-hero-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .alo-hero-nav-arrow {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   STRIPE ELEMENTS LUXURY STYLING
+   ========================================================================== */
+
+.alo-stripe-input-wrapper {
+  background-color: var(--alo-white);
+  border: 1px solid var(--alo-border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  min-height: 42px;
+}
+
+.alo-stripe-input-wrapper:focus-within {
+  border-color: var(--alo-black);
+  box-shadow: 0 0 0 1px var(--alo-black);
+}
+
+.alo-stripe-error-box {
+  background-color: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #c53030;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.alo-stripe-payment-request-btn {
+  margin-bottom: 12px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+
+

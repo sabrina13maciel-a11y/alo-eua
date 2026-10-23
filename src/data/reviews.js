@@ -1,0 +1,107 @@
+export const CUSTOMER_REVIEWS = [
+  {
+    id: 1,
+    author: "Elena Rostova",
+    location: "Miami, Florida",
+    verified: true,
+    rating: 5,
+    date: "2 days ago",
+    product: "Airbrush Splendor Dress",
+    size: "Size S · Black",
+    fit: "True to Size",
+    title: "The most flattering athletic dress I've ever owned!",
+    content: "I took a chance after seeing this all over TikTok, and honestly, the fit is unreal. The built-in shorts and bra hold everything firmly in place without feeling suffocating. Fabric is buttery smooth with that signature Alo matte finish. Wearing this from hot pilates straight to brunch in South Beach.",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
+    reviewImg: "https://wowdress.shop/images/airbrush-splendor-dress-azure-blue-1.webp"
+  },
+  {
+    id: 2,
+    author: "Chloe Callahan",
+    location: "Austin, Texas",
+    verified: true,
+    rating: 5,
+    date: "4 days ago",
+    product: "Accolade Full Zip Hoodie",
+    size: "Size M · Tan",
+    fit: "Perfect Oversized Fit",
+    title: "Worth every single dollar. Pure American luxury terry.",
+    content: "The weight and drape of this hoodie is perfection. You can immediately feel the quality difference compared to standard retail hoodies. The chrome Alo logo on the chest adds that subtle high-fashion touch. USPS Priority delivered it in 2 days from California! Already ordered the matching sweatpants.",
+    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80",
+    reviewImg: "https://wowdress.shop/images/accolade-full-zip-hoodie-1.webp"
+  },
+  {
+    id: 3,
+    author: "Sophia Sterling",
+    location: "Los Angeles, CA",
+    verified: true,
+    rating: 5,
+    date: "3 days ago",
+    product: "Airbrush High-Waist Legging",
+    size: "Size XS · White/Black",
+    fit: "True to Size",
+    title: "100% squat-proof and lifts everything!",
+    content: "The compression on the waistline gives an instant hourglass shape. They don't roll down at all during high-intensity hot yoga or heavy lifting. The seams are completely seamless and the fabric breathes amazingly well in warm weather. Alo never misses.",
+    avatar: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=150&q=80",
+    reviewImg: "https://wowdress.shop/images/legging-1.webp"
+  },
+  {
+    id: 4,
+    author: "Madison Wright",
+    location: "Scottsdale, Arizona",
+    verified: true,
+    rating: 5,
+    date: "5 days ago",
+    product: "ALO Softsculpt Feel The Heat Halter Bra",
+    size: "Size S · Romance Red",
+    fit: "True to Size",
+    title: "Super fast US shipping and incredible Softsculpt fabric.",
+    content: "The quality of this piece is exceptional. The Softsculpt material is ultra-plush to the touch but provides unbelievable support without digging into my shoulders. The Romance Red color is rich and vibrant. Arrived neatly packaged in the official Alo box within 3 days. Highly recommend!",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
+    reviewImg: "https://wowdress.shop/images/halter-bra-1.webp"
+  },
+  {
+    id: 5,
+    author: "Jessica Vance",
+    location: "New York, NY",
+    verified: true,
+    rating: 5,
+    date: "6 days ago",
+    product: "3\" High-Waist Airlift Short",
+    size: "Size S · Black",
+    fit: "True to Size",
+    title: "My holy grail studio workout shorts.",
+    content: "I have 5 pairs of these now. Sleek, sheen, no camel toe, no riding up during runs through Central Park. Alo has truly perfected the waistband elasticity. You get what you pay for in durability.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
+    reviewImg: "https://wowdress.shop/images/airlift-short-1.webp"
+  },
+  {
+    id: 6,
+    author: "Hannah Lindqvist",
+    location: "Seattle, WA",
+    verified: true,
+    rating: 5,
+    date: "1 week ago",
+    product: "Seamless Ribbed Low Back Bra",
+    size: "Size M · Espresso",
+    fit: "True to Size",
+    title: "So comfortable I forget I'm wearing it.",
+    content: "Ordered on Monday, package arrived in Washington on Thursday via USPS Priority. The low-back cut looks gorgeous under open-back tops or completely on its own. Fabric holds up beautifully after repeated washes.",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
+    reviewImg: "https://wowdress.shop/images/seamless-bra-1.webp"
+  }
+];
+
+export const REVIEWS_SUMMARY = {
+  averageRating: 4.9,
+  totalReviews: 3840,
+  fitScore: "98% True to Size",
+  comfortScore: "99% High Comfort",
+  qualityScore: "100% Premium Fabric",
+  ratingBreakdown: [
+    { stars: 5, percentage: 93 },
+    { stars: 4, percentage: 5 },
+    { stars: 3, percentage: 1.4 },
+    { stars: 2, percentage: 0.4 },
+    { stars: 1, percentage: 0.2 },
+  ]
+};
