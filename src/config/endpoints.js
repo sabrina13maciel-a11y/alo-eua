@@ -98,4 +98,27 @@ export async function trackFunnelEvent(eventName, payload = {}) {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, payload);
   }
+
+  // Microsoft Clarity Funnel & Lead Tracking
+  if (typeof window !== 'undefined' && typeof window.clarity === 'function') {
+    try {
+      window.clarity('event', eventName);
+      if (payload.value !== undefined) {
+        window.clarity('set', 'lead_value', String(payload.value));
+      }
+      if (payload.currency) {
+        window.clarity('set', 'lead_currency', String(payload.currency));
+      }
+      if (payload.content_name) {
+        window.clarity('set', 'lead_product', String(payload.content_name));
+      }
+      if (eventName === 'Purchase') {
+        window.clarity('set', 'lead_status', 'Converted_Customer');
+      } else if (eventName === 'InitiateCheckout') {
+        window.clarity('set', 'lead_status', 'In_Checkout');
+      }
+    } catch (e) {
+      console.warn('[Clarity Tracking Error]', e);
+    }
+  }
 }
