@@ -7,12 +7,12 @@ export default function SizeGuideModal({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   const sizeData = [
-    { size: 'XXS (00-0)', bustIn: '30-31', bustCm: '76-79', waistIn: '23-24', waistCm: '58-61', hipIn: '33-34', hipCm: '84-86', us: '00-0', eu: '30-32', br: '34' },
-    { size: 'XS (2-4)', bustIn: '32-33', bustCm: '81-84', waistIn: '25-26', waistCm: '63-66', hipIn: '35-36', hipCm: '89-91', us: '2-4', eu: '34-36', br: '36' },
-    { size: 'S (4-6)', bustIn: '34-35', bustCm: '86-89', waistIn: '27-28', waistCm: '68-71', hipIn: '37-38', hipCm: '94-97', us: '4-6', eu: '36-38', br: '38' },
-    { size: 'M (8-10)', bustIn: '36-37', bustCm: '91-94', waistIn: '29-30', waistCm: '74-76', hipIn: '39-40', hipCm: '99-102', us: '8-10', eu: '40-42', br: '40' },
-    { size: 'L (12-14)', bustIn: '38-40', bustCm: '96-101', waistIn: '31-33', waistCm: '79-84', hipIn: '41-43', hipCm: '104-109', us: '12-14', eu: '44-46', br: '42' },
-    { size: 'XL (16-18)', bustIn: '41-43', bustCm: '104-109', waistIn: '34-36', waistCm: '86-91', hipIn: '44-46', hipCm: '112-117', us: '16-18', eu: '48-50', br: '44' },
+    { size: 'XXS (00-0)', bustIn: '30-31', bustCm: '76-79', waistIn: '23-24', waistCm: '58-61', hipIn: '33-34', hipCm: '84-86', us: '00-0', uk: '4', eu: '30-32' },
+    { size: 'XS (2-4)', bustIn: '32-33', bustCm: '81-84', waistIn: '25-26', waistCm: '63-66', hipIn: '35-36', hipCm: '89-91', us: '2-4', uk: '6-8', eu: '34-36' },
+    { size: 'S (4-6)', bustIn: '34-35', bustCm: '86-89', waistIn: '27-28', waistCm: '68-71', hipIn: '37-38', hipCm: '94-97', us: '4-6', uk: '8-10', eu: '36-38' },
+    { size: 'M (8-10)', bustIn: '36-37', bustCm: '91-94', waistIn: '29-30', waistCm: '74-76', hipIn: '39-40', hipCm: '99-102', us: '8-10', uk: '12-14', eu: '40-42' },
+    { size: 'L (12-14)', bustIn: '38-40', bustCm: '96-101', waistIn: '31-33', waistCm: '79-84', hipIn: '41-43', hipCm: '104-109', us: '12-14', uk: '16', eu: '44-46' },
+    { size: 'XL (16-18)', bustIn: '41-43', bustCm: '104-109', waistIn: '34-36', waistCm: '86-91', hipIn: '44-46', hipCm: '112-117', us: '16-18', uk: '18-20', eu: '48-50' },
   ];
 
   return (
@@ -54,8 +54,8 @@ export default function SizeGuideModal({ isOpen, onClose }) {
                 <th>WAIST</th>
                 <th>HIPS</th>
                 <th>US</th>
+                <th>UK</th>
                 <th>EU</th>
-                <th>BR</th>
               </tr>
             </thead>
             <tbody>
@@ -66,8 +66,8 @@ export default function SizeGuideModal({ isOpen, onClose }) {
                   <td>{unit === 'inches' ? `${row.waistIn}"` : `${row.waistCm} cm`}</td>
                   <td>{unit === 'inches' ? `${row.hipIn}"` : `${row.hipCm} cm`}</td>
                   <td>{row.us}</td>
+                  <td>{row.uk}</td>
                   <td>{row.eu}</td>
-                  <td>{row.br}</td>
                 </tr>
               ))}
             </tbody>

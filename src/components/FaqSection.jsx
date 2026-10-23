@@ -7,8 +7,8 @@ const FAQS = [
     a: "Our activewear is engineered to fit true to size. Our signature Softsculpt and Airlift fabrics offer gentle, contouring compression that hugs your curves without pinching. If you are between sizes and prefer a tighter performance sculpt, size down. For relaxed studio lounging, choose your usual size. Check our interactive Size Guide on any product page for exact measurements."
   },
   {
-    q: "What countries do you ship to, and how fast is international delivery?",
-    a: "We ship express worldwide to over 80 countries, including the United States, Canada, United Kingdom, Australia, Brazil, Europe, and Asia. All orders are packed and dispatched within 24-48 hours. Express transit typically delivers in 3 to 5 business days via tracked DHL/FedEx."
+    q: "How fast is U.S. domestic shipping and where does it dispatch from?",
+    a: "All orders are packed and dispatched directly from our Los Angeles, California fulfillment center within 24 hours. Standard domestic USPS Priority Mail delivers in 2 to 4 business days nationwide (Free on orders over $75). FedEx and UPS 2-Day Air are also available at checkout for express delivery."
   },
   {
     q: "Are the leggings and dresses 100% squat-proof and non-sheer?",

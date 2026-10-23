@@ -10,13 +10,13 @@ export default function ValuePillars() {
     },
     {
       icon: <Globe size={22} strokeWidth={1.5} />,
-      title: "WORLDWIDE EXPRESS SHIPPING",
-      desc: "Priority tracked international delivery directly to your door in 3-5 business days."
+      title: "U.S. PRIORITY TRACKED SHIPPING",
+      desc: "Dispatched from Los Angeles, CA with fast 2-4 business day USPS delivery nationwide."
     },
     {
       icon: <RefreshCw size={22} strokeWidth={1.5} />,
-      title: "30-DAY EASY EXCHANGES",
-      desc: "Try it at home. Perfect fit guarantee with hassle-free exchanges and instant support."
+      title: "30-DAY RISK-FREE U.S. TRIAL",
+      desc: "Prepaid USPS return label included in every box. Zero restocking fees on exchanges."
     },
     {
       icon: <Star size={22} strokeWidth={1.5} />,

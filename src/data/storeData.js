@@ -31,8 +31,8 @@ export const HERO_BANNERS = [
 
 export const STORE_TOPICS = [
   {
-    "id": "novidades",
-    "label": "Novidades",
+    "id": "new-arrivals",
+    "label": "New Arrivals",
     "category": "all",
     "image": "https://aloyogabr.vtexassets.com/assets/vtex.file-manager-graphql/images/d332762b-e781-4c60-ba13-47788f1dc35e___0517b2343d2c0e80019a2897469a0edc.jpg",
     "badge": "NEW"
@@ -45,45 +45,45 @@ export const STORE_TOPICS = [
     "badge": "-70%"
   },
   {
-    "id": "jaquetas",
-    "label": "Jaquetas & Casacos",
+    "id": "jackets",
+    "label": "Jackets & Outerwear",
     "category": "Hoodies & Jackets",
     "image": "https://aloyogabr.vtexassets.com/assets/vtex.file-manager-graphql/images/6a421625-637a-4264-936d-1e8e1c2dbec0___5520f9546f42e44e21015a07a8b09687.jpg"
   },
   {
-    "id": "vestidos",
-    "label": "Vestidos & Rompers",
+    "id": "dresses",
+    "label": "Dresses & Rompers",
     "category": "Dresses & Rompers",
     "image": "https://aloyogabr.vtexassets.com/assets/vtex.file-manager-graphql/images/4e4c743c-aca9-4b3f-9c79-45132595deee___d04acb2524ede30b54f6d8bcbc31e90e.jpg",
     "badge": "HOT"
   },
   {
     "id": "leggings",
-    "label": "Leggings & Shorts",
+    "label": "Leggings & Bottoms",
     "category": "Leggings & Bottoms",
     "image": "https://aloyogabr.vtexassets.com/assets/vtex.file-manager-graphql/images/efc1d58c-e2ce-4b16-b11c-b4ffd0387552___40ffb69be9951c01e02f9b478cd444de.jpg"
   },
   {
-    "id": "sutias",
-    "label": "Bras & Croppeds",
+    "id": "bras",
+    "label": "Bras & Crop Tops",
     "category": "Bras & Tops",
     "image": "https://aloyogabr.vtexassets.com/assets/vtex.file-manager-graphql/images/af32929a-be82-4653-88c5-5cf3e86e8e82___e1eabe58b0bb49999a7851a909bc8d2e.png"
   },
   {
     "id": "yoga",
-    "label": "Yoga & Pilates",
+    "label": "Yoga & Studio",
     "category": "all",
     "image": "https://aloyogabr.vtexassets.com/assets/vtex.file-manager-graphql/images/9b64a2ce-99ff-44e7-9dbb-b8564d8e109b___4ba8cf1011b78f1845dbbe255ed49788.jpg"
   },
   {
-    "id": "acessorios",
-    "label": "Acess\u00f3rios",
+    "id": "accessories",
+    "label": "Accessories & Bags",
     "category": "Accessories",
     "image": "https://aloyogabr.vtexassets.com/assets/vtex.file-manager-graphql/images/6f0a2dea-f77a-4cdd-8ac7-6734de9f8ad3___e62bf00c1d86cb1bf7ba2392fdd41a6f.jpg"
   },
   {
-    "id": "calcados",
-    "label": "Cal\u00e7ados & T\u00eanis",
+    "id": "footwear",
+    "label": "Footwear & Shoes",
     "category": "Footwear",
     "image": "https://aloyogabr.vtexassets.com/assets/vtex.file-manager-graphql/images/4d0a5725-df32-4537-a38f-3e068ca0e174___e09aa3853d25c2c14c0bea3d1fc7810e.jpg"
   }

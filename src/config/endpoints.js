@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * CONFIGURAÇÃO CENTRAL DE ENDPOINTS & INTEGRAÇÃO STRIPE (ALO YOGA STORE)
+ * CENTRAL ENDPOINTS & STRIPE INTEGRATION (ALO YOGA STORE - U.S. EDITION)
  * ============================================================================
  */
 
@@ -23,7 +23,7 @@ export const ENDPOINTS_CONFIG = {
 };
 
 /**
- * Cria PaymentIntent no Stripe via backend seguro
+ * Creates PaymentIntent on Stripe via secure backend
  */
 export async function createStripePaymentIntent(orderPayload) {
   try {
@@ -54,10 +54,10 @@ export async function createStripePaymentIntent(orderPayload) {
 }
 
 /**
- * Confirma o pedido e gera código de rastreamento USPS
+ * Confirms order and generates official USPS tracking number
  */
 export async function submitCheckoutOrder(orderData) {
-  console.log('[FUNIL] Enviando pedido para processamento final:', orderData);
+  console.log('[Checkout Flow] Submitting order for final processing:', orderData);
   
   try {
     const response = await fetch(ENDPOINTS_CONFIG.CONFIRM_ORDER, {
@@ -72,10 +72,10 @@ export async function submitCheckoutOrder(orderData) {
       return await response.json();
     }
   } catch (err) {
-    console.warn('[FUNIL] Chamada de rede falhou, aplicando fallback:', err);
+    console.warn('[Checkout Flow] Network call fallback applied:', err);
   }
 
-  // Fallback seguro caso backend offline temporariamente
+  // Safe fallback if backend is momentarily offline
   return {
     success: true,
     orderId: 'ALO-' + Math.floor(100000 + Math.random() * 900000),
@@ -89,7 +89,7 @@ export async function submitCheckoutOrder(orderData) {
 }
 
 export async function trackFunnelEvent(eventName, payload = {}) {
-  console.log(`[PIXEL / ANALYTICS] Event: ${eventName}`, payload);
+  console.log(`[Pixel / Analytics] Event: ${eventName}`, payload);
   
   if (typeof window !== 'undefined' && window.fbq) {
     window.fbq('track', eventName, payload);
